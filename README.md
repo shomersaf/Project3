@@ -43,3 +43,8 @@ git push origin --delete mybranch
 Вместо --delete можно просто писать -d:
 
 git push origin -d mybranch
+
+## git пушить на гит все ветки
+git push --all origin
+
+
