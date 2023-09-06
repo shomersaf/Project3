@@ -8,7 +8,7 @@ const pool = mysql2.createPool({
     user: 'root',
     port: 3306,
     password: "admin",
-    database: 'exam',
+    database: 'project3',
 });
 
 export { pool }
