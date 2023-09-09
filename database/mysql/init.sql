@@ -7,7 +7,7 @@ CREATE TABLE users (
     firstName VARCHAR(255) DEFAULT NULL,
     lastName VARCHAR(255) DEFAULT NULL,
     email VARCHAR(255) DEFAULT NULL,
-    pswrd VARCHAR(50) DEFAULT NULL,
+    pswrd VARCHAR(255) DEFAULT NULL,
     userRole VARCHAR(50) DEFAULT NULL,
     PRIMARY KEY (`userId`),
     UNIQUE KEY `email` (`email`)
