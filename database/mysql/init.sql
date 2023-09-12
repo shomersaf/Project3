@@ -205,6 +205,28 @@ ADD CONSTRAINT `vcnId`
   ON DELETE CASCADE
   ON UPDATE CASCADE;
 
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('John', 'Evans', 'one@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Peter', 'Simpson', 'two@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Ann', 'Whatson', 'three@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Alex', 'Jones', 'four@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Alexandra', 'Petrucci', 'five@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('James', 'McArtur', 'six@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
 
-
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '5');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '6');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '7');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('6', '8');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('6', '9');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('7', '10');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('8', '11');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('8', '12');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('8', '13');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('9', '14');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('10', '15');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('10', '16');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('10', '16');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('10', '15');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('9', '5');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('8', '6');
+INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('8', '7');
 
