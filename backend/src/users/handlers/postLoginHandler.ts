@@ -16,6 +16,6 @@ async function postLoginHandler( email:string,
         if(!isPasswordValid) { throw new Error ('password entered is not valid')} else{
             const signedToken = jsonwebtoken.sign({ userName: email, role: "admin" }, process.env.SECRET as string, { expiresIn: '60m' })
             console.log(signedToken)
-        return result}
+        return {result, signedToken}}
         }
         export { postLoginHandler };

@@ -17,10 +17,9 @@ followingRouter.delete("/delete",deleteFollowing)
 async function deleteFollowing(req: Request, res: Response, next: NextFunction) {
   try {
     const {userId, vcnId } = req.body;
-    if (!userId||!vcnId) throw new Error('Following data is absent');
     const result = await deleteFollowingHandler(userId, vcnId);
       if(result)console.log('unfollowed')
-    res.json(result)
+    res.status(200).json(result)
   } catch (error) {
     res.status(500).send({
       message: error
@@ -34,7 +33,6 @@ async function deleteFollowing(req: Request, res: Response, next: NextFunction) 
 async function postFollowing(req: Request, res: Response, next: NextFunction) {
   try {
     const { userId, vcnId } = req.body;
-    if (!userId || !vcnId ) throw new Error('Some data not entered');
     const result = await postFollowingHandler( userId, vcnId );
       if(result)console.log('following added')
     res.json(result)
