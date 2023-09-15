@@ -29,6 +29,7 @@ async function postUser(req: Request, res: Response, next: NextFunction) {
   try {
     const { firstName, lastName, email, pswrd, userRole } = req.body;
     if (!firstName || !lastName || !email || !pswrd || !userRole) throw new Error('Some data not entered');
+    if (typeof firstName !="string" || typeof lastName !="string" || typeof email !="string" || typeof pswrd !="string" ) throw new Error('Irrelevant data type entered');
     if(firstName.length<3 || lastName.length<3 ) throw new Error('Some user data is too short');
     if(firstName.length>10 || lastName.length>10 ) throw new Error('Some user data is too long');
     if(pswrd.length<5 || lastName.length>10 ) throw new Error('The password should include from 5 to 10 charachters');

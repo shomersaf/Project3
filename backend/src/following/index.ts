@@ -7,8 +7,8 @@ import {deleteFollowingHandler } from "./handlers/deleteFollowingHandler";
 
 const followingRouter = express.Router();
 
-followingRouter.get("/by_user",getFollowingByUser)
-followingRouter.get("/by_vacation",getFollowingByVacation)
+followingRouter.get("/by_user/:userId",getFollowingByUser)
+followingRouter.get("/by_vacation/:vcnId",getFollowingByVacation)
 followingRouter.post("/new",postFollowing)
 followingRouter.delete("/delete",deleteFollowing)
 
@@ -46,8 +46,8 @@ async function postFollowing(req: Request, res: Response, next: NextFunction) {
 
 async function getFollowingByVacation(req: Request, res: Response, next: NextFunction) {
   try {
-    const { vcnId } = req.body;
-    const result = await getFollowingsByVacation(vcnId);
+    const { vcnId } = req.params;
+    const result = await getFollowingsByVacation(+vcnId);
     console.log(result);
     res.json(result);
   } catch (error) {
@@ -57,10 +57,11 @@ async function getFollowingByVacation(req: Request, res: Response, next: NextFun
 
 async function getFollowingByUser(req: Request, res: Response, next: NextFunction) {
   try {
-    const { userId } = req.body;
-    const result = await getFollowingsByUserHandler(userId);
-    console.log(result);
-    res.json(result);
+    const { userId } = req.params;
+    console.log(userId);
+    const result = await getFollowingsByUserHandler(+userId);
+
+    res.status(200).json(result);
   } catch (error) {
     return next(error);
   }

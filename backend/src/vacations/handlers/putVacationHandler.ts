@@ -2,9 +2,9 @@
     
 import { pool } from "../../database"
 
-async function putVacationHandler(vcnId:number,destination:string, about:string, fromDate:Date, toDate:Date, price:number, imageSrc:string ) {
-    const query = `UPDATE project3.vacations SET destination = ${destination}, about = ${about}, fromDate = ${fromDate}, toDate = ${toDate}, price = ${price} WHERE (vcnId = ${vcnId});`
-    const results = await pool.execute(query);
+async function putVacationHandler(destination:string, about:string, fromDate:string, toDate:string, price:number, imageSrc:string, vcnId:number, ) {
+    const query = `UPDATE project3.vacations SET destination = ?, about = ?, fromDate = ?, toDate = ?, price = ?, imageSrc =? WHERE (vcnId = ?);`
+    const results = await pool.execute(query,[destination, about, fromDate, toDate, price, imageSrc, vcnId]);
     const [data] = results;
     return data;
 }
