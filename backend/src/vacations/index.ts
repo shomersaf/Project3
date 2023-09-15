@@ -33,7 +33,7 @@ async function putVacation(req: Request, res: Response, next: NextFunction) {
     const { destination, about, fromDate, toDate, price, imageSrc, vcnId } = req.body;
     if (!destination || !about || !fromDate || !toDate || !price ) throw new Error('Some data not entered');
     if (typeof destination !="string" || typeof about !="string"|| typeof imageSrc !="string" ) throw new Error('Irrelevant data type entered');
-    if (isNaN(price)) throw new Error("price should be a number");
+    if (isNaN(price)) throw new Error("Price should be a number");
     const isimageSrcValid = checkURL(imageSrc);
     if (isimageSrcValid ==false) throw new Error("Unproper image URL format entered");
     const result = await putVacationHandler(destination, about, fromDate, toDate, price, imageSrc, vcnId );

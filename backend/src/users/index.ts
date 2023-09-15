@@ -32,14 +32,14 @@ async function postUser(req: Request, res: Response, next: NextFunction) {
     if (typeof firstName !="string" || typeof lastName !="string" || typeof email !="string" || typeof pswrd !="string" ) throw new Error('Irrelevant data type entered');
     if(firstName.length<3 || lastName.length<3 ) throw new Error('Some user data is too short');
     if(firstName.length>10 || lastName.length>10 ) throw new Error('Some user data is too long');
-    if(pswrd.length<5 || lastName.length>10 ) throw new Error('The password should include from 5 to 10 charachters');
-   if (pswrd.length<4) throw new Error ('the password length should be 4 letters minimum');
+    if(pswrd.length>10 ) throw new Error('The password length should be 10 letters maximum');
+   if (pswrd.length<4) throw new Error ('The password length should be 4 letters minimum');
     const isEmailValid = validateEmail(email);
     if (!isEmailValid) throw new Error("Unproper email format entered");
     const result = await postUserHandler(
       firstName.toString(), lastName.toString(), email.toString(), pswrd.toString(), userRole.toString());
       if(result)console.log('user added')
-    res.json(result)
+      res.status(200).json(result)
   } catch (error) {
     res.status(400).send({
       message: error

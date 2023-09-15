@@ -205,12 +205,12 @@ ADD CONSTRAINT `vcnId`
   ON DELETE CASCADE
   ON UPDATE CASCADE;
 
-INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('John', 'Evans', 'one@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
-INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Peter', 'Simpson', 'two@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
-INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Ann', 'Whatson', 'three@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
-INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Alex', 'Jones', 'four@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
-INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('Alexandra', 'Petrucci', 'five@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
-INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`) VALUES ('James', 'McArtur', 'six@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('John', 'Evans', 'one@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('Peter', 'Simpson', 'two@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('Ann', 'Whatson', 'three@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('Alex', 'Jones', 'four@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('Alexandra', 'Petrucci', 'five@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('James', 'McArthur', 'six@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
 
 INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '5');
 INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '6');
