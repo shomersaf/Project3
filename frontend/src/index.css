@@ -16,7 +16,7 @@ a:hover{
   cursor: pointer;
 }
 body{
-  background: #90c5c9;
+  background: #3b7f63;
   color: #000;
   /* font-family: 'Abel', sans-serif; */
   font-family: 'Bellota Text', cursive;
@@ -24,6 +24,8 @@ body{
   /* font-family: 'IBM Plex Sans Hebrew', sans-serif; */
   /* font-family: 'Roboto', sans-serif; */
   /* font-family: 'Rock Salt', cursive; */
+border:none;
+outline: none;
 }
 header{
   background: #9fe6a6;
@@ -33,6 +35,8 @@ header{
   justify-content: space-between;
   padding: 0 30px;
   align-items: center;
+  /* background-image: url('https://avatars.mds.yandex.net/i?id=d7c31c9fc62e86e0e3b4ea910f6d3d6b_l-5331889-images-thumbs&n=13'); */
+  /* opacity:0.4; */
 }
 h1{
   text-transform: capitalize;
@@ -40,6 +44,7 @@ h1{
    color: #004350;
 }
 footer{
+  opacity: 0.4;
   background: #3b7f63;
   height: 100px;
   width: 100%;
@@ -48,11 +53,11 @@ footer{
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #b9f4d1;
+  color: #fefffe;
 }
 main{
   background: #b4eff6;
-margin-bottom: 200px;
+margin-bottom: 100px;
 height: fit-content;
   width: 100%;
 }
@@ -72,4 +77,90 @@ h2{
 }
 h3{
   text-transform: capitalize;
+}
+.card img{
+  object-fit: cover;
+  width:500px;
+  height: 250px;
+  border-radius: 20px;
+}
+.card{
+  width:520px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+  padding: 10px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.cards{
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  margin:auto;
+  justify-content: space-evenly;
+}
+.like{
+  color:rgb(222, 189, 196);
+  font-size: 34px;
+  cursor:pointer;
+}
+.likeDiv{
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 15px;
+  line-height: 30px;
+  margin-right: 5px;
+}
+.likes{
+  margin-left: 10px;
+  color:crimson;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Gruppo', sans-serif;
+}
+.card h3{
+  margin-top: 10px;
+font-weight: bold;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+.date span{
+  font-weight: bold;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+.date{
+  margin-top: 10px;
+}
+.cardFooter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.price{
+  font-weight: bold;
+  color:royalblue;
+  font-size: 22px;
+  margin-left: 10px;
+    /* font-family: 'Abel', sans-serif; */
+    /* font-family: 'Bellota Text', cursive; */
+    /* font-family: 'Gruppo', sans-serif; */
+    /* font-family: 'IBM Plex Sans Hebrew', sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Rock Salt', cursive; */
+}
+.description{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }

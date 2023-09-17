@@ -5,4 +5,13 @@ export interface IRoute {
     component: any,
     label?: string
   }
+  export interface IVacation {
+    destination: string;
+    about: string;
+    fromDate: string;
+    toDate: string;
+    price: number;
+    imageSrc: string;
+    followers: number;
+  }
   
