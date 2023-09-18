@@ -8,14 +8,14 @@ export function Vacations (){
     style: 'currency',
     currency: 'USD',
     // These options are needed to round to whole numbers if that's what you want.
-    minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
 
     return(
-        <div>
+        <div className="vacations">
 
-            <h2>Vacations</h2>
+            <h2 className="headline">Vacations</h2>
            
             {isError && <h4>Something went wrong...</h4>}
             <div className = "cards">
