@@ -15,3 +15,10 @@ export interface IRoute {
     followers: number;
   }
   
+  export interface IUser {
+    firstName:string,
+    lastName:string,
+    email:string, 
+    pswrd:string, 
+    userRole:string
+  }

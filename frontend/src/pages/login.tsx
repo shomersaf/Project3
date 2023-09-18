@@ -8,7 +8,7 @@ export function Login (){
         </form>
         <button>Register</button>
         <p>Don't have an account?</p>
-        <p><a href="./new">Register now</a></p>
+        <p><a href="users/new">Register now</a></p>
 
     </div>
     )

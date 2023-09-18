@@ -14,16 +14,11 @@ export const routes: Array<IRoute> = [
       path: "/users/new",
       component: <Registration />,
       key: "Registration",
-      label: "Registration"
+     // label: "Registration"
   },
+ 
   {
-    path: "/users/login",
-    component: <Login />,
-    key: "Login",
-    label: "Login"
-  },
-  {
-    path: "/",
+    path: "/vacations",
     component: <Vacations />,
     key: "Vacations",
     label: "Vacations"
@@ -62,5 +57,11 @@ export const routes: Array<IRoute> = [
     component: <Statistics />,
     key: "Statistics",
     label: "Statistics"
+  },
+  {
+    path: "/",
+    component: <Login />,
+    key: "Login",
+    label: "Login"
   }
   ]
