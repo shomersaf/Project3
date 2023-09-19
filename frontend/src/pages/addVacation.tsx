@@ -82,7 +82,3 @@ export function AddVacation (){
     )
 }
 
-//TODO:
-
-
-//the date can't be passed one
