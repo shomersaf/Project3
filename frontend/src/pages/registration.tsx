@@ -1,27 +1,29 @@
 
 import { useState } from 'react';
-import { useLazyPostUserQuery } from '../store/api/vacations.api.';
+import { useRegisterUserMutation} from '../store/api/vacations.api.';
 import { Navigate } from 'react-router-dom';
 
 export function Registration (){
-
 
 const [firstName,setFirstName] = useState("");
 const [lastName,setLastName] = useState("");
 const [email,setEmail] = useState("");
 const [pswrd,setPswrd] = useState("");
 
+const [registerUser,{ isSuccess,isLoading,isError}] = useRegisterUserMutation()
 
-const [fetchRegistration,{ isSuccess,isLoading,isError}] = useLazyPostUserQuery()
-const clickHandler =(firstName:string,lastName:string,email:string,pswrd:string,userRole:string)=>{
-   
-    fetchRegistration({firstName,lastName,email,pswrd,userRole});
-
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPswrd("");
-
+const registerUserHandler = async (firstName:string,lastName:string,email:string,pswrd:string,userRole:string)=>{
+    if(firstName && lastName && email && pswrd && userRole){
+        await registerUser({firstName,lastName,email,pswrd,userRole}).unwrap();
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPswrd("");
+        alert("Successfully registered")
+    }else{
+        alert ("Some of forms fields are empty. Enter the data, please!")
+    }
+ 
 }
 
     return(
@@ -38,7 +40,7 @@ const clickHandler =(firstName:string,lastName:string,email:string,pswrd:string,
             <input type="text" placeholder="email..." value={email} onChange = {(e)=>{setEmail(e.target.value)}} />
             <input type="password" placeholder="password... " value={pswrd} onChange = {(e)=>{setPswrd(e.target.value)}} />
             </form>
-            <button onClick ={()=>{clickHandler(firstName,lastName,email,pswrd,"user")}}>Register</button>
+            <button onClick ={()=>{registerUserHandler(firstName,lastName,email,pswrd,"user")}}>Register</button>
             <p>Already a member?</p>
             <p><a href="/">Login</a></p>
 

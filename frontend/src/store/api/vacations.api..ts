@@ -8,13 +8,15 @@ export const vacationsApi = createApi({
         baseUrl:'http://localhost:4001/'
     }),
     refetchOnFocus:true,
-    tagTypes: ['Post'],
+    tagTypes: ['allVacations'],
     endpoints: build =>({
         getVacations: build.query<IVacation[], string>({
             query:()=>
-                'vacations',    
+                'vacations',   
+                providesTags: ['allVacations'], 
         }),
-        postUser: build.query<IUser,object>({
+      
+          registerUser: build.mutation<IUser,object>({
             query: (payload) => ({
               url: '/users/new',
               method: 'POST',
@@ -23,9 +25,22 @@ export const vacationsApi = createApi({
                 'Content-type': 'application/json; charset=UTF-8',
               },
             }),
-            providesTags: ['Post'],
+
+          }),
+
+          addVacation: build.mutation<IVacation,object>({
+            query: (payload) => ({
+              url: '/vacations/new',
+              method: 'POST',
+              body: payload,
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              },
+            }),
+
           }),
     })
 })
-export const {useGetVacationsQuery, usePostUserQuery, useLazyGetVacationsQuery,useLazyPostUserQuery } = vacationsApi
+export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation } = vacationsApi
+
 
