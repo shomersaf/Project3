@@ -1,11 +1,11 @@
 
 import { useState } from 'react';
 import { useLazyPostUserQuery } from '../store/api/vacations.api.';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export function Registration (){
 
-const navigate = useNavigate();
+
 const [firstName,setFirstName] = useState("");
 const [lastName,setLastName] = useState("");
 const [email,setEmail] = useState("");
@@ -21,23 +21,22 @@ const clickHandler =(firstName:string,lastName:string,email:string,pswrd:string,
     setLastName("");
     setEmail("");
     setPswrd("");
-    if(isSuccess)navigate('/');
-  
 
 }
 
     return(
         <div className="registration">
         
-            {isError && <p>Somethimg went wrong...</p>}
-            {isLoading && <p>Loading...</p>}
+            {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
+            {isLoading && <p className='loadingP'>Loading...</p>}
+            {isSuccess && <Navigate to="/" replace />}
    
             <h2>Registration</h2>
             <form action="#">
             <input type="text" placeholder="first name..." value={firstName} onChange = {(e)=>{setFirstName(e.target.value)}} />
             <input type="text" placeholder="last name..." value={lastName} onChange = {(e)=>{setLastName(e.target.value)}} />
             <input type="text" placeholder="email..." value={email} onChange = {(e)=>{setEmail(e.target.value)}} />
-            <input type="text" placeholder="password... " value={pswrd} onChange = {(e)=>{setPswrd(e.target.value)}} />
+            <input type="password" placeholder="password... " value={pswrd} onChange = {(e)=>{setPswrd(e.target.value)}} />
             </form>
             <button onClick ={()=>{clickHandler(firstName,lastName,email,pswrd,"user")}}>Register</button>
             <p>Already a member?</p>
@@ -47,9 +46,3 @@ const clickHandler =(firstName:string,lastName:string,email:string,pswrd:string,
     )
 }
 
-//Something went wrong works only on second time
-//redirect doesn't work after fixing error or loading...
-//css for error and loading
-//fix some css issues 
-//mb the navigate gomponent shoul be used
-//the issue of middleware on vacations

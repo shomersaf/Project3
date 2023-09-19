@@ -3,7 +3,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { IVacation, IUser } from '../../models/models'
 
 export const vacationsApi = createApi({
-    reducerPath: 'vacations/api',
+    reducerPath: 'vacationsApi',
     baseQuery: fetchBaseQuery({
         baseUrl:'http://localhost:4001/'
     }),
@@ -11,12 +11,10 @@ export const vacationsApi = createApi({
     tagTypes: ['Post'],
     endpoints: build =>({
         getVacations: build.query<IVacation[], string>({
-            query:()=>({
-                url: 'vacations'
-            })
+            query:()=>
+                'vacations',    
         }),
         postUser: build.query<IUser,object>({
-
             query: (payload) => ({
               url: '/users/new',
               method: 'POST',
