@@ -4,23 +4,24 @@ import { IVacation, IUser } from '../../models/models'
 
 export const vacationsApi = createApi({
     reducerPath: 'vacationsApi',
+    tagTypes: ['IVacation[]'],
     baseQuery: fetchBaseQuery({
         baseUrl:'http://localhost:4001/'
     }),
     refetchOnFocus:true,
-    tagTypes: ['allVacations'],
+    // refetchOnMountOrArgChange:true,
     endpoints: build =>({
         getVacations: build.query<IVacation[], string>({
             query:()=>
                 'vacations',   
-                providesTags: ['allVacations'], 
+                providesTags: ['IVacation[]'],
         }),
       
           registerUser: build.mutation<IUser,object>({
-            query: (payload) => ({
+            query: (body) => ({
               url: '/users/new',
               method: 'POST',
-              body: payload,
+              body,
               headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               },
@@ -37,10 +38,19 @@ export const vacationsApi = createApi({
                 'Content-type': 'application/json; charset=UTF-8',
               },
             }),
-
+    
+            // invalidatesTags: ['IVacation[]'],
           }),
+
+          deleteVacation: build.mutation<IVacation[], string>({
+            query:(vcnId)=>({ 
+            url:  `vacations/delete/${vcnId}`, 
+            method: 'DELETE',
+            }),
+            invalidatesTags: ['IVacation[]'],
+        }),
     })
 })
-export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation } = vacationsApi
+export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation } = vacationsApi
 
 

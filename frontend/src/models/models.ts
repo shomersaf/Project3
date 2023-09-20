@@ -6,6 +6,7 @@ export interface IRoute {
     label?: string
   }
   export interface IVacation {
+    vcnId:string;
     destination: string;
     about: string;
     fromDate: string;

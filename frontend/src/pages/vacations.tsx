@@ -34,7 +34,7 @@ export function Vacations (){
                             
                         <div className="price">{formatter.format(vacation.price)}</div>
                         <div className ="likeDiv">
-                            <span className ="like">&#9829;</span>
+                            <span className ="like" title ="follow">&#10084;</span>
                             <span className="likes">{vacation.followers}</span> 
                         </div>
                         </div>

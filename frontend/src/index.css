@@ -1,35 +1,34 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Gruppo&family=IBM+Plex+Sans+Hebrew:wght@100;200;300;400;500;600;700&family=Roboto:wght@100&family=Rock+Salt&display=swap');
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-text-decoration: none;
-}
-a{
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Gruppo&family=IBM+Plex+Sans+Hebrew:wght@100;200;300;400;500;600;700&family=Roboto:wght@100&family=Rock+Salt&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   text-decoration: none;
 }
-a:visited{
+a {
+  text-decoration: none;
+}
+a:visited {
   color: inherit;
 }
-a:hover{
+a:hover {
   cursor: pointer;
 }
-body{
+body {
   background: #b4eff6;
   color: #000;
   min-width: fit-content;
 
   /* font-family: 'Abel', sans-serif; */
-  font-family: 'Bellota Text', cursive;
+  font-family: "Bellota Text", cursive;
   /* font-family: 'Gruppo', sans-serif; */
   /* font-family: 'IBM Plex Sans Hebrew', sans-serif; */
   /* font-family: 'Roboto', sans-serif; */
   /* font-family: 'Rock Salt', cursive; */
-border:none;
-outline: none;
+  border: none;
+  outline: none;
 }
-header{
+header {
   /* background: #33ffff; */
   background: transparent;
   max-height: fit-content;
@@ -39,18 +38,17 @@ header{
   padding: 0 30px;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 100px;;
-
+  min-height: 100px;
 }
-h1{
+h1 {
   text-transform: capitalize;
-   font-family: 'Rock Salt', cursive;
-   color: #004350;
-   text-wrap: nowrap;
+  font-family: "Rock Salt", cursive;
+  color: #004350;
+  text-wrap: nowrap;
 }
-footer{
+footer {
   /* opacity: 0.4; */
-  background: #3b7f63;
+  background: #09987c;
   height: 45px;
   width: 100%;
   position: fixed;
@@ -62,67 +60,67 @@ footer{
   /* border-top-right-radius: 50%;
   border-top-left-radius: 50%; */
 }
-main{
+main {
   background: #b4eff6;
-margin-bottom: 100px;
-min-height: 100vh;
+  margin-bottom: 100px;
+  min-height: 100vh;
   width: 100%;
 
-  background-image: url('./assets/waves.svg');
+  background-image: url("./assets/waves.svg");
   background-position: top;
   background-repeat: repeat-x;
   background-size: 100% auto;
 }
-nav a:hover{
-text-decoration: underline;
+nav a:hover {
+  text-decoration: underline;
 }
-nav a{
+nav a {
   font-size: large;
   padding-left: 10px;
   font-weight: bold;
 }
-nav a:first-child{
+nav a:first-child {
   padding-left: 0px;
 }
 
-nav{
+nav {
   text-align: center;
 }
-h3{
+h3 {
   text-transform: capitalize;
 }
-.card img{
+.card img {
   object-fit: cover;
-  width:500px;
+  width: 500px;
   min-height: 250px;
   height: 250px;
   border-radius: 50%;
 }
-.card{
-  width:300px;
+.card {
+  width: 300px;
   overflow: hidden;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   padding: 10px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   border-radius: 20px;
   margin-bottom: 20px;
 }
-.cards{
+.cards {
   width: 80%;
   display: flex;
   flex-wrap: wrap;
-  margin:auto;
+  margin: auto;
   justify-content: space-evenly;
 }
-.like{
-  color:rgb(222, 189, 196);
-  font-size: 34px;
-  cursor:pointer;
+.like {
+  color: rgb(222, 189, 196);
+  font-size: 28px;
+  cursor: pointer;
 }
-.likeDiv{
+.likeDiv {
   display: flex;
   background-color: white;
   justify-content: center;
@@ -133,45 +131,47 @@ h3{
   line-height: 30px;
   margin-right: 5px;
 }
-.likes{
+
+.likes {
   margin-left: 10px;
-  color:crimson;
+  color: crimson;
   font-weight: bold;
   font-size: 20px;
-  font-family: 'Gruppo', sans-serif;
+  font-family: "Gruppo", sans-serif;
 }
-.card h3{
+
+.card h3 {
   margin-top: 10px;
-font-weight: bold;
-  font-family: 'IBM Plex Sans Hebrew', sans-serif;
-}
-.date span{
   font-weight: bold;
-  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
 }
-.date{
+.date span {
+  font-weight: bold;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
+}
+.date {
   margin-top: 10px;
 }
-.cardFooter{
+.cardFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-top: 10px;
 }
-.price{
+.price {
   font-weight: bold;
-  color:royalblue;
+  color: royalblue;
   font-size: 22px;
   margin-left: 10px;
-    /* font-family: 'Abel', sans-serif; */
-    /* font-family: 'Bellota Text', cursive; */
-    /* font-family: 'Gruppo', sans-serif; */
-    /* font-family: 'IBM Plex Sans Hebrew', sans-serif; */
-    font-family: 'Roboto', sans-serif;
-    /* font-family: 'Rock Salt', cursive; */
+  /* font-family: 'Abel', sans-serif; */
+  /* font-family: 'Bellota Text', cursive; */
+  /* font-family: 'Gruppo', sans-serif; */
+  /* font-family: 'IBM Plex Sans Hebrew', sans-serif; */
+  font-family: "Roboto", sans-serif;
+  /* font-family: 'Rock Salt', cursive; */
 }
-.description{
+.description {
   height: 100%;
   width: 100%;
   display: flex;
@@ -179,64 +179,66 @@ font-weight: bold;
   justify-content: space-between;
   align-items: center;
 }
-.registration{
-  width:600px;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+.registration {
+  width: 600px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   padding-bottom: 30px;
   padding-top: 20px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   border-radius: 20px;
-  margin:20px auto;
+  margin: 20px auto;
 }
-.login{
-  width:600px;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+.login {
+  width: 600px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   padding-bottom: 30px;
   padding-top: 20px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   border-radius: 20px;
-  margin:20px auto;
-  
+  margin: 20px auto;
 }
-form{
+form {
   margin-top: 20px;
   margin-bottom: 10px;
-  padding:10px;
+  padding: 10px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
 }
-form input{
+form input {
   width: 580px;
   height: 40px;
   background-color: transparent;
-  border:none;
+  border: none;
   border-bottom: 2px solid white;
   margin-top: 10px;
-  outline:none;
+  outline: none;
   padding-left: 10px;
 }
-textarea{
+textarea {
   width: 580px;
   height: 80px;
   background-color: transparent;
-  border:none;
+  border: none;
   border-bottom: 2px solid white;
   margin-top: 10px;
-  outline:none;
+  outline: none;
   padding-left: 10px;
 }
-form input:focus, form input:active, textarea:active, textarea:focus{
-background-color: #b0fcb8;
+form input:focus,
+form input:active,
+textarea:active,
+textarea:focus {
+  background-color: #b0fcb8;
 }
-button{
+button {
   width: fit-content;
   padding: 10px 15px;
   margin: 10px;
@@ -244,34 +246,72 @@ button{
   border-radius: 10px;
   border: none;
   background-color: #09987c;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4); 
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   cursor: pointer;
 }
-button:hover{
+button:hover {
   background-color: #077d65;
 }
-.registration a, .login a{
-  color:rgb(7, 113, 206);
+.buttons button:nth-of-type(2) {
+  background-color: rgb(29, 136, 230);
+}
+.buttons button:nth-of-type(2):hover {
+  background-color: rgb(23, 107, 180);
+}
+.registration a,
+.login a {
+  color: rgb(7, 113, 206);
   font-weight: bold;
-  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
 }
-.registration a:hover, .login a:hover{
-text-decoration: underline;
+.registration a:hover,
+.login a:hover {
+  text-decoration: underline;
 }
-.headline{
- text-align: center;
- margin-top: 15px;
- margin-bottom: 15px;
- font-family: 'IBM Plex Sans Hebrew', sans-serif;
+.headline {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
 }
-.loadingP{
-  color:rgb(7, 113, 206);
+.loadingP {
+  color: rgb(7, 113, 206);
   font-weight: bold;
-  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
 }
-.errorP{
-  color:crimson;
+.errorP {
+  color: crimson;
   font-weight: bold;
-  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
+}
+
+.actionsDiv {
+  display: flex;
+  width: 100px;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 15px;
+  line-height: 30px;
+  margin-right: 5px;
+}
+.editS {
+  color: rgb(7, 113, 206);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.editS:hover {
+  color: rgb(9, 77, 137);
+}
+.deleteS {
+  color: crimson;
+  font-size: 20px;
+  cursor: pointer;
+}
+.deleteS:hover {
+  color: rgb(165, 4, 36);
 }
