@@ -52,17 +52,11 @@ export const vacationsApi = createApi({
             invalidatesTags: ['IVacation[]'],
         }),
 
-        getGraph: build.query<IVacation[], string>({
-          query:()=>({ 
-          url:  `vacations`, 
-          method: 'GET',
-          }),
-          providesTags: ['IVacation[]'],
-      }),
+     
 
       
     })
 })
-export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation,useGetGraphQuery} = vacationsApi
+export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation} = vacationsApi
 
 

@@ -1,13 +1,16 @@
   
-import { useGetGraphQuery } from "../store/api/vacations.api."
+import { useGetVacationsQuery } from "../store/api/vacations.api."
 import { Chart } from 'primereact/chart';
 
+import CsvDownloadButton from 'react-json-to-csv';
 
 export function Statistics() {
-  const { isError, isLoading, data } = useGetGraphQuery("")
-  const vacations = data;
-  const destinations = vacations?.map(vacation => (vacation.destination))
-  const followers = vacations?.map(vacation => (vacation.followers))
+  const { isError, isLoading, data } = useGetVacationsQuery("")
+
+
+
+  const destinations = data?.map(vacation => (vacation.destination))
+  const followers = data?.map(vacation => (vacation.followers))
 
   const documentStyle = getComputedStyle(document.documentElement);
   const textColor = documentStyle.getPropertyValue('--text-color');
@@ -28,7 +31,7 @@ export function Statistics() {
 
     ]
   };
-  console.log(chartData.datasets)
+
   const chartOptions = {
     maintainAspectRatio: false,
     aspectRatio: 0.8,
@@ -67,15 +70,19 @@ export function Statistics() {
   return (
     <div className="graph">
       {isError && <p className="errorP">Something went wrong...</p>}
-      {isLoading && <p className="loadingP">Loading...</p>|| <Chart type="bar" data={chartData} options={chartOptions} />}
+      {isLoading && <p className="loadingP">Loading...</p>|| <div>
+    
+      <Chart type="bar" data={chartData} options={chartOptions} />
+      </div>
+      }
       <div className="brif">
         <h3>Followers per Vacation:</h3>
-      {vacations?.map(vacation => (
-          <p key={vacation.vcnId}>{vacation.destination} - {vacation.followers}</p>
+      {data?.map(vacation => (
+        <p key={vacation.vcnId}>{vacation.destination} - {vacation.followers}</p> 
         ))}
-     
+
       </div>
-    
+      { data &&<CsvDownloadButton data={data} filename="my_vacations.csv" >Download CSV File</CsvDownloadButton>}
     </div>
   )
 }
