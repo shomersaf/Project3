@@ -13,12 +13,12 @@ export function Vacations (){
   });
 
     return(
-        <div className="vacations">
+        <div className="wrapper">
 
             <h2 className="headline">Vacations</h2>
            
-            {isError && <h4>Something went wrong...</h4>}
-            {isLoading && <h4>Loading...</h4>}
+            {isError && <p className="errorP">Something went wrong...</p>}
+            {isLoading && <p className="loadingP">Loading...</p> ||
             <div className = "cards">
         
                 {data?.map(vacation => (
@@ -44,7 +44,7 @@ export function Vacations (){
                     </div>
                 ))}
     
-            </div>
+            </div>}
     
              
         </div>

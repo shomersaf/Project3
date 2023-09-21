@@ -16,13 +16,13 @@ export function EditVacations (){
      });
    
        return(
-           <div className="vacations">
+           <div className="wrapper">
    
                <h2 className="headline">Edit Vacations</h2>
               
-               {isError && <h4>Something went wrong...</h4>}
+               {isLoading && <p className="loadingP">Loading...</p> ||
                <div className = "cards">
-               {isLoading && <h4>Loading...</h4>}
+               {isError && <p className="errorP">Something went wrong...</p>}
                    {data?.map(vacation => (
                        <div key={vacation.destination+vacation.fromDate} className="card">
                            <img src={vacation.imageSrc} alt ={vacation.destination} />
@@ -47,7 +47,7 @@ export function EditVacations (){
                        </div>
                    ))}
        
-               </div>
+               </div>}
        
                 
            </div>

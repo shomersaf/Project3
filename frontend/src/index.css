@@ -319,4 +319,12 @@ button:hover {
 .graph{
   width: 80%;
   margin:100px auto;
+  text-align: center;
+}
+.brif{
+  width: fit-content;
+  margin: 20px auto;
+}
+.wrapper{
+  text-align: center;
 }
