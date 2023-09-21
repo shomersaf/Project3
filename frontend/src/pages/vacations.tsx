@@ -3,7 +3,7 @@ import { useGetVacationsQuery } from "../store/api/vacations.api."
 
 export function Vacations (){
  const {isLoading,isError,data} = useGetVacationsQuery("")
- console.log(data)
+
  const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -18,8 +18,9 @@ export function Vacations (){
             <h2 className="headline">Vacations</h2>
            
             {isError && <h4>Something went wrong...</h4>}
-            <div className = "cards">
             {isLoading && <h4>Loading...</h4>}
+            <div className = "cards">
+        
                 {data?.map(vacation => (
                     <div key={vacation.destination+vacation.fromDate} className="card">
                         <img src={vacation.imageSrc} alt ={vacation.destination} />

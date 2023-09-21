@@ -9,13 +9,15 @@ export const vacationsApi = createApi({
         baseUrl:'http://localhost:4001/'
     }),
     refetchOnFocus:true,
-    // refetchOnMountOrArgChange:true,
+    refetchOnMountOrArgChange:true,
     endpoints: build =>({
         getVacations: build.query<IVacation[], string>({
             query:()=>
                 'vacations',   
                 providesTags: ['IVacation[]'],
+                
         }),
+      
       
           registerUser: build.mutation<IUser,object>({
             query: (body) => ({
@@ -49,8 +51,18 @@ export const vacationsApi = createApi({
             }),
             invalidatesTags: ['IVacation[]'],
         }),
+
+        getGraph: build.query<IVacation[], string>({
+          query:()=>({ 
+          url:  `vacations`, 
+          method: 'GET',
+          }),
+          providesTags: ['IVacation[]'],
+      }),
+
+      
     })
 })
-export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation } = vacationsApi
+export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation,useGetGraphQuery} = vacationsApi
 
 
