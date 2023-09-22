@@ -223,13 +223,24 @@ describe("GET /VACATIONS", function () {
   })
 });
 
-describe("DELETE /vacations/delete/:vcnId", function(){
-  it("Delete vacation - Success ", async function () {
-    console.log("insertId: ",insertId)
+describe("GET /vacations/byid/:vcnId", function(){
+  it("Get vacation by vcnId - Success ", async function () {
+    // console.log("vacation by id: ",insertId)
     vcnId = insertId.toString();
     const result = await axios.delete(`http://localhost:4001/vacations/delete/${vcnId}`)
     expect(result.status).equal(200)
 })
 });
+
+describe("DELETE /vacations/delete/:vcnId", function(){
+  it("Delete vacation - Success ", async function () {
+    // console.log("insertId: ",insertId)
+    vcnId = insertId.toString();
+    const result = await axios.delete(`http://localhost:4001/vacations/delete/${vcnId}`)
+    expect(result.status).equal(200)
+})
+});
+
+
 
 })

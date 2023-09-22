@@ -1,16 +1,19 @@
 
 import express, { Request, Response, NextFunction } from "express"
 import {getVacationsHandler } from "./handlers/getVacationsHandler";
-import {postVacationHandler } from "./handlers/postVacationHandler";
+import { getVacationHandler } from "./handlers/getVacationHandler";
 import {putVacationHandler } from "./handlers/putVacationHandler";
 import {deleteVacationHandler } from "./handlers/deleteVacationHandler";
+import {postVacationHandler } from "./handlers/postVacationHandler";
 
 const vacationsRouter = express.Router();
 
 vacationsRouter.get("/",getVacations)
+vacationsRouter.get("/byid/:vcnId",getVacation)
 vacationsRouter.post("/new",postVacation)
 vacationsRouter.put("/edit",putVacation)
 vacationsRouter.delete("/delete/:vcnId",deleteVacation)
+
 
 async function deleteVacation(req: Request, res: Response, next: NextFunction) {
   try {
@@ -68,6 +71,8 @@ async function postVacation(req: Request, res: Response, next: NextFunction) {
 }
 
 
+
+
 async function getVacations(req: Request, res: Response, next: NextFunction) {
   try {
     const result = await getVacationsHandler();
@@ -77,6 +82,17 @@ async function getVacations(req: Request, res: Response, next: NextFunction) {
     return next(error);
   }
 }
+
+async function getVacation(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { vcnId } = req.params;
+    const result = await getVacationHandler(Number(vcnId));
+    res.status(200).json(result);
+  } catch (error) {
+    return next(error);
+  }
+}
+
 
 function checkURL(url:string) {
   var r = /^(ftp|http|https):\/\/[^ "]+$/;

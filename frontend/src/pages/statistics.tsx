@@ -6,22 +6,17 @@ import CsvDownloadButton from 'react-json-to-csv';
 
 export function Statistics() {
   const { isError, isLoading, data } = useGetVacationsQuery("")
-
-
-
   const destinations = data?.map(vacation => (vacation.destination))
   const followers = data?.map(vacation => (vacation.followers))
-
   const documentStyle = getComputedStyle(document.documentElement);
   const textColor = documentStyle.getPropertyValue('--text-color');
   const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
   const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
+//  const colors = ['#2980B9','#3498DB','#48C9B0','#45B39D','#58D68D'];
   const chartData = {
     labels: destinations,
 
     datasets: [
-
       {
         label: "Followers per Vacation",
         backgroundColor: documentStyle.getPropertyValue('--blue-500'),
