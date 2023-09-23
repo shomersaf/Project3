@@ -242,6 +242,7 @@ textarea:active,
 textarea:focus {
   background-color: #b0fcb8;
 }
+
 button {
   width: fit-content;
   padding: 10px 15px;
@@ -356,6 +357,8 @@ align-items: start;
 }
 .editForm textarea{
   height: 160px;
+  border: 2px solid white;
+  border-radius: 10px;
 }
 .dates{
   display: flex;
@@ -380,11 +383,18 @@ align-items: center;
 }
 .priceInputDiv{
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 } 
-
+.priceInputDiv input{
+width: 30%;
+}
 .editForm img{
   margin: 20px auto;
 }
 .imgRef{
   width: 100%;
+  overflow-x:hidden;
 }

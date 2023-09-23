@@ -17,9 +17,6 @@ export const vacationsApi = createApi({
                 providesTags: ['IVacation[]'],       
         }),
       
-      
-    
-      
           registerUser: build.mutation<IUser,object>({
             query: (body) => ({
               url: '/users/new',
@@ -45,6 +42,20 @@ export const vacationsApi = createApi({
             // invalidatesTags: ['IVacation[]'],
           }),
 
+          putVacation: build.mutation<IVacation,object>({
+            query: (payload) => ({
+              url: '/vacations/edit',
+              method: 'PUT',
+              body: payload,
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              },
+            }),
+
+            // invalidatesTags: ['IVacation[]'],
+          }),
+
+
           deleteVacation: build.mutation<IVacation[], string>({
             query:(vcnId)=>({ 
             url:  `vacations/delete/${vcnId}`, 
@@ -53,18 +64,12 @@ export const vacationsApi = createApi({
             invalidatesTags: ['IVacation[]'],
         }),
 
-        getVacation: build.query<IVacation[], string>({
-          query:(vcnId)=>
-              `vacations/byid/${vcnId}`,   
-              providesTags: ['IVacation[]'],       
-      }),
-    
+        
 
-
-
+       
       
     })
 })
-export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation,useGetVacationQuery} = vacationsApi
+export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation, usePutVacationMutation} = vacationsApi
 
 

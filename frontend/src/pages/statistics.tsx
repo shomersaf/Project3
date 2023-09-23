@@ -52,7 +52,8 @@ export function Statistics() {
       },
       y: {
         ticks: {
-          color: textColorSecondary
+          color: textColorSecondary,
+          stepSize: 1
         },
         grid: {
           color: surfaceBorder,
