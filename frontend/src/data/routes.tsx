@@ -31,12 +31,7 @@ export const routes: Array<IRoute> = [
     label: "Add Vacation"
   },
   
-  {
-    path: "/vacations/edit",
-    component: <EditVacation />,
-    key: "EditVacation",
-    //label: "Edit Vacation"
-  },
+ 
   {
     path: "/vacations/byid/:vcnId",
     component: <EditVacation />,

@@ -1,7 +1,8 @@
 export function NotFound (){
     return(
-        <div>
-            <h2>Not Found</h2>
+        <div className="wrapper notfound">
+            <p>404</p>
+            <h2>Not<br />Found</h2>
         </div>
     )
 }

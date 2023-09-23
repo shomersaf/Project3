@@ -44,7 +44,7 @@ export function EditVacation() {
             setToDate("");
             setPrice("");
             setImageSrc("");
-            alert(`Vacation id:${vcnId} successfully edited`)
+            alert(`Vacation #:${vcnId} successfully edited`)
         } else {
             alert("Enter all the relevant data in proper way, please!")
         }
@@ -53,7 +53,7 @@ export function EditVacation() {
     const navigate = useNavigate();
     return (
         <div className="registration">
-            <h2>Edit Vacation id:{vcnId}</h2>
+            <h2>Edit Vacation #{vcnId}</h2>
             {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
             {isLoading && <p className='loadingP'>Loading...</p> ||
                 <div className="wrapper">

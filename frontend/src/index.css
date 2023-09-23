@@ -398,3 +398,24 @@ width: 30%;
   width: 100%;
   overflow-x:hidden;
 }
+.notfound{
+display: flex;
+width: fit-content;
+margin: auto;
+flex-direction: column;
+
+}
+.notfound p{
+  font-size: 400px;
+  color: #99d2f5;
+ /* font-family: 'Abel', sans-serif; */
+ /* font-family: "Bellota Text", cursive; */
+ font-family: 'Gruppo', sans-serif;
+ /* font-family: 'IBM Plex Sans Hebrew', sans-serif; */
+ /* font-family: 'Roboto', sans-serif; */
+ /* font-family: 'Rock Salt', cursive; */
+}
+.notfound h2{
+margin-top: -230px;
+ font-family: 'Rock Salt', cursive;
+}
