@@ -14,10 +14,11 @@ export const vacationsApi = createApi({
         getVacations: build.query<IVacation[], string>({
             query:()=>
                 'vacations',   
-                providesTags: ['IVacation[]'],
-                
+                providesTags: ['IVacation[]'],       
         }),
       
+      
+    
       
           registerUser: build.mutation<IUser,object>({
             query: (body) => ({
@@ -52,11 +53,18 @@ export const vacationsApi = createApi({
             invalidatesTags: ['IVacation[]'],
         }),
 
-     
+        getVacation: build.query<IVacation[], string>({
+          query:(vcnId)=>
+              `vacations/byid/${vcnId}`,   
+              providesTags: ['IVacation[]'],       
+      }),
+    
+
+
 
       
     })
 })
-export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation} = vacationsApi
+export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation,useGetVacationQuery} = vacationsApi
 
 

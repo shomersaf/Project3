@@ -90,12 +90,15 @@ nav {
 h3 {
   text-transform: capitalize;
 }
-.card img {
+.card img, form img {
   object-fit: cover;
   width: 500px;
   min-height: 250px;
   height: 250px;
   border-radius: 50%;
+}
+form img {
+  margin-top: 20px;
 }
 .card {
   width: 300px;
@@ -210,7 +213,7 @@ form {
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items:center;
   flex-direction: column;
 }
 form input {
@@ -327,4 +330,61 @@ button:hover {
 }
 .wrapper{
   text-align: center;
+}
+form span{
+  font-weight: bold;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.about{
+text-align: justify;
+}
+.editing form{
+align-items: start;
+
+}
+.editForm input{
+  width:inherit;
+  margin-left: 10px;
+}
+.destination{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editForm textarea{
+  height: 160px;
+}
+.dates{
+  display: flex;
+  width: 100%;
+  justify-content:stretch;
+}
+.fromDate{
+ display: flex;
+ flex-direction: column;
+ align-items: start;
+ margin-top: 20px;
+ width: 100%;
+}
+.newDate{
+display: flex;
+width: 100%;
+justify-content: start;
+align-items: center;
+}
+.currentDate{
+  font-family: "Bellota Text", cursive;
+}
+.priceInputDiv{
+  margin-top: 20px;
+} 
+
+.editForm img{
+  margin: 20px auto;
+}
+.imgRef{
+  width: 100%;
 }

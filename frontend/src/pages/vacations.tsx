@@ -26,7 +26,7 @@ export function Vacations (){
                         <img src={vacation.imageSrc} alt ={vacation.destination} />
                         <div className="description">
                         <h3>{vacation.destination}</h3>
-                        <p>{vacation.about}</p>
+                        <p className="about">{vacation.about}</p>
                         <div className="date">
                         <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
                         <span>{new Date(vacation.toDate).toLocaleDateString()}</span>

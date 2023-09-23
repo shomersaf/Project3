@@ -10,6 +10,7 @@ export function AddVacation() {
     const [toDate, setToDate] = useState("");
     const [price, setPrice] = useState("");
     const [imageSrc, setImageSrc] = useState("");
+   
 
     const [addVacation, { isSuccess, isLoading, isError }] = useAddVacationMutation()
 
@@ -56,13 +57,11 @@ export function AddVacation() {
     }
     return (
         <div className="registration">
-
+ <h2>Add Vacation</h2>
             {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
-            {isLoading && <p className='loadingP'>Loading...</p>}
-            {isSuccess && <Navigate to="/vacations" replace />}
-
-            <h2>Add Vacation</h2>
-            <form action="#">
+            {isLoading && <p className='loadingP'>Loading...</p> ||
+            <div className="wrapper">
+                  <form action="#">
                 <input type="text" placeholder="destination..." value={destination} onChange={(e) => { setDestination(e.target.value) }} />
                 {/* <input type="text" placeholder="about..." value={about} onChange = {(e)=>{setAbout(e.target.value)}} /> */}
                 <textarea placeholder="about..." value={about} onChange={(e) => { setAbout(e.target.value) }}></textarea>
@@ -90,8 +89,12 @@ export function AddVacation() {
                   setImageSrc("");
             }}>Cancel</button>
             </div>
-            
+            </div>
+            }
+            {isSuccess && <Navigate to="/vacations" replace />}
 
+           
+          
         </div>
     )
 }

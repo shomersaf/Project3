@@ -1,9 +1,14 @@
 
-import { useGetVacationsQuery, useDeleteVacationMutation } from "../store/api/vacations.api."
-
+import {useGetVacationsQuery, useDeleteVacationMutation } from "../store/api/vacations.api."
+import { useNavigate } from 'react-router-dom';
 export function EditVacations (){
     const {isLoading,isError,data} = useGetVacationsQuery("")
     const [deleteVacation]= useDeleteVacationMutation();
+    const navigate = useNavigate();
+    const editVacationHandler =(vcnId: string)=>{
+        navigate(`/vacations/byid/${vcnId}`)
+    }
+
     const deleteVacationHandler = async (vcnId:string) =>{
         await deleteVacation(vcnId).unwrap();
     }
@@ -28,7 +33,7 @@ export function EditVacations (){
                            <img src={vacation.imageSrc} alt ={vacation.destination} />
                            <div className="description">
                            <h3>{vacation.destination}</h3>
-                           <p>{vacation.about}</p>
+                           <p className="about">{vacation.about}</p>
                            <div className="date">
                            <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
                            <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
@@ -38,7 +43,7 @@ export function EditVacations (){
                            <div className="price">{formatter.format(vacation.price)}</div>
                            <div className ="actionsDiv">
                             
-                               <span className ="editS" title="edit"><a href="./edit">&#9998;</a></span>
+                               <span className ="editS" title="edit" onClick={()=>{editVacationHandler(vacation.vcnId)}}>&#9998;</span>
                                <span className="deleteS" title="delete" onClick ={()=>{if(confirm(`Delete \`${vacation.destination}\` destination?`)) deleteVacationHandler(vacation.vcnId)}}>&#10006;</span> 
                            </div>
                            </div>
