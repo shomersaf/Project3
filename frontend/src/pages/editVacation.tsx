@@ -1,10 +1,9 @@
 import { useGetVacationsQuery, usePutVacationMutation } from "../store/api/vacations.api.";
 import { useNavigate, Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState} from 'react';
 
 export function EditVacation() {
-    const [destination, setDestination] = useState("");
-    const [about, setAbout] = useState("");
+    
     const [fromDate, setfromDate] = useState("");
     const [toDate, setToDate] = useState("");
     const [price, setPrice] = useState("");
@@ -12,6 +11,20 @@ export function EditVacation() {
     const vcnId = window.location.pathname.replace('/vacations/byid/', "");
     const { data } = useGetVacationsQuery("")
     const currentVacation = data?.filter(vacation => (vacation.vcnId == vcnId))
+    const [destination, setDestination] = useState("");
+    const [about, setAbout] = useState("");
+    const [FirstRun, setFirstRun] = useState(true);
+    currentVacation?.map(vacation => {
+        if (FirstRun){
+            setDestination(vacation.destination)
+            setAbout(vacation.about)
+            setImageSrc(vacation.imageSrc)
+            setPrice(vacation.price.toString())
+            setFirstRun(false)
+        }
+    })
+    
+ 
     const [putVacation, { isSuccess, isLoading, isError }] = usePutVacationMutation()
 
     const putVacationHandler = async (destination: string,
@@ -63,26 +76,26 @@ export function EditVacation() {
                             <form action="#" className="editForm">
                                 <div className="destination">
                                     <span>Destination:</span>
-                                    <input type="text" placeholder={vacation.destination} value={destination} onChange={(e) => {setDestination(e.target.value)}} />
+                                    <input type="text" value={destination} onChange={(e) => { setDestination(e.target.value) }} />
                                 </div>
 
                                 <span>About:</span>
-                                <textarea placeholder={vacation.about} value={about} onChange={(e) => {setAbout(e.target.value)}}></textarea>
+                                <textarea  value={about} onChange={(e) => { setAbout(e.target.value) }}></textarea>
                                 <div className="dates">
                                     <div className="fromDate">
                                         <span>FROM:</span>
-                                        <span>Current: <span className="currentDate">{new Date(vacation.fromDate).toISOString().split('T')[0]}</span></span>
+                                       
                                         <div className="newDate">
-                                            <span>New:</span>
-                                            <input type="date" placeholder={new Date(vacation.fromDate).toISOString().split('T')[0]} value={fromDate} onChange={(e) => {setfromDate(e.target.value) }} />
+                              
+                                            <input type="date" value={fromDate || new Date(vacation.fromDate).toISOString().split('T')[0]} onChange={(e) => { setfromDate(e.target.value) }} />
                                         </div>
                                     </div>
                                     <div className="fromDate">
                                         <span>TO:</span>
-                                        <span>Current: <span className="currentDate">{new Date(vacation.toDate).toISOString().split('T')[0]}</span></span>
+                                        
                                         <div className="newDate">
-                                            <span>New:</span>
-                                            <input type="date" placeholder={new Date(vacation.toDate).toISOString().split('T')[0]} value={toDate} onChange={(e) => {setToDate(e.target.value) }} />
+                               
+                                            <input type="date" value={toDate || new Date(vacation.toDate).toISOString().split('T')[0]} onChange={(e) => { setToDate(e.target.value) }} />
                                         </div>
                                     </div>
                                 </div>
@@ -91,24 +104,24 @@ export function EditVacation() {
                                 <img src={vacation.imageSrc} alt={vacation.destination} />
                                 <div className="imgRef">
                                     <span>Image url:</span>
-                                    <input type="text" placeholder={vacation.imageSrc} value={imageSrc} onChange={(e) => { setImageSrc(e.target.value) }} />
+                                    <input type="text"  value={imageSrc} onChange={(e) => { setImageSrc(e.target.value) }} />
                                 </div>
                                 <div className="priceInputDiv">
                                     <span>Price (up to 10,000):</span>
-                                    <input type="number" placeholder={vacation.price.toString()} value={price} onChange={(e) => { setPrice(e.target.value) }} />
+                                    <input type="number" value={price} onChange={(e) => { setPrice(e.target.value) }} />
                                 </div>
 
                             </form>
                             <div className="buttons">
                                 <button onClick={() => {
-                                
+
                                     putVacationHandler(
-                                        destination || vacation.destination,
-                                        about || vacation.about,
+                                        destination,
+                                        about,
                                         fromDate || new Date(vacation.fromDate).toISOString().replace("Z", " ").slice(0, 19).replace("T", " "),
                                         toDate || new Date(vacation.toDate).toISOString().replace("Z", " ").slice(0, 19).replace("T", " "),
-                                        +price || vacation.price,
-                                        imageSrc || vacation.imageSrc,
+                                        +price,
+                                        imageSrc,
                                         +vcnId
                                     )
                                 }}>Publish</button>

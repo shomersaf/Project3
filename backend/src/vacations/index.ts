@@ -76,7 +76,7 @@ async function postVacation(req: Request, res: Response, next: NextFunction) {
 async function getVacations(req: Request, res: Response, next: NextFunction) {
   try {
     const result = await getVacationsHandler();
-    console.log(result);
+    //console.log(result);
     res.status(200).json(result);
   } catch (error) {
     return next(error);

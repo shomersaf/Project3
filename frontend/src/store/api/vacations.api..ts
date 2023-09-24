@@ -26,7 +26,18 @@ export const vacationsApi = createApi({
                 'Content-type': 'application/json; charset=UTF-8',
               },
             }),
+          }),
 
+          loginUser: build.mutation<IUser,object>({
+            query: (payload) => ({
+              url: '/users/login',
+              method: 'POST',
+              body:payload,
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              },
+              transformResponse: (response: { data: unknown } ) => response.data,
+            }),
           }),
 
           addVacation: build.mutation<IVacation,object>({
@@ -70,6 +81,6 @@ export const vacationsApi = createApi({
       
     })
 })
-export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation, usePutVacationMutation} = vacationsApi
+export const {useGetVacationsQuery, useRegisterUserMutation, useAddVacationMutation,useDeleteVacationMutation, usePutVacationMutation, useLoginUserMutation} = vacationsApi
 
 

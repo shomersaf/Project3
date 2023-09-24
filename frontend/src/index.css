@@ -419,3 +419,8 @@ flex-direction: column;
 margin-top: -230px;
  font-family: 'Rock Salt', cursive;
 }
+.registrateDiv, .loginDiv{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
