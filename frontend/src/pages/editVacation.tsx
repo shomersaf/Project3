@@ -1,6 +1,8 @@
 import { useGetVacationsQuery, usePutVacationMutation } from "../store/api/vacations.api.";
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useState} from 'react';
+import { Header } from "../ui/header";
+import { Footer } from "../ui/footer";
 
 export function EditVacation() {
     
@@ -65,6 +67,8 @@ export function EditVacation() {
     }
     const navigate = useNavigate();
     return (
+       <>
+       <Header />
         <div className="registration">
             <h2>Edit Vacation #{vcnId}</h2>
             {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
@@ -138,9 +142,8 @@ export function EditVacation() {
 
             }
             {isSuccess && <Navigate to="/vacations/editAll" replace />}
-
-
-
         </div>
+        <Footer />
+       </>
     )
 }

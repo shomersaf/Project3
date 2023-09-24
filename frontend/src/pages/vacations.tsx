@@ -1,5 +1,7 @@
 
 import { useGetVacationsQuery } from "../store/api/vacations.api."
+import { Footer } from "../ui/footer";
+import { Header } from "../ui/header";
 
 export function Vacations (){
  const {isLoading,isError,data} = useGetVacationsQuery("")
@@ -13,40 +15,44 @@ export function Vacations (){
   });
 
     return(
+      <>
+      <Header />
         <div className="wrapper">
 
-            <h2 className="headline">Vacations</h2>
+<h2 className="headline">Vacations</h2>
+
+{isError && <p className="errorP">Something went wrong...</p>}
+{isLoading && <p className="loadingP">Loading...</p> ||
+<div className = "cards">
+
+    {data?.map(vacation => (
+        <div key={vacation.destination+vacation.fromDate} className="card">
+            <img src={vacation.imageSrc} alt ={vacation.destination} />
+            <div className="description">
+            <h3>{vacation.destination}</h3>
+            <p className="about">{vacation.about}</p>
+            <div className="date">
+            <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
+            <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
+            </div>
+            <div className="cardFooter">
+                
+            <div className="price">{formatter.format(vacation.price)}</div>
+            <div className ="likeDiv">
+                <span className ="like" title ="follow">&#10084;</span>
+                <span className="likes">{vacation.followers}</span> 
+            </div>
+            </div>
+            </div>
            
-            {isError && <p className="errorP">Something went wrong...</p>}
-            {isLoading && <p className="loadingP">Loading...</p> ||
-            <div className = "cards">
-        
-                {data?.map(vacation => (
-                    <div key={vacation.destination+vacation.fromDate} className="card">
-                        <img src={vacation.imageSrc} alt ={vacation.destination} />
-                        <div className="description">
-                        <h3>{vacation.destination}</h3>
-                        <p className="about">{vacation.about}</p>
-                        <div className="date">
-                        <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
-                        <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
-                        </div>
-                        <div className="cardFooter">
-                            
-                        <div className="price">{formatter.format(vacation.price)}</div>
-                        <div className ="likeDiv">
-                            <span className ="like" title ="follow">&#10084;</span>
-                            <span className="likes">{vacation.followers}</span> 
-                        </div>
-                        </div>
-                        </div>
-                       
-                    </div>
-                ))}
-    
-            </div>}
-    
-             
         </div>
+    ))}
+
+</div>}
+
+ 
+</div>
+<Footer />
+      </>
     )
 }

@@ -3,6 +3,8 @@ import { useGetVacationsQuery } from "../store/api/vacations.api."
 import { Chart } from 'primereact/chart';
 
 import CsvDownloadButton from 'react-json-to-csv';
+import { Header } from "../ui/header";
+import { Footer } from "../ui/footer";
 
 export function Statistics() {
   const { isError, isLoading, data } = useGetVacationsQuery("")
@@ -64,7 +66,9 @@ export function Statistics() {
   };
   
   return (
-    <div className="graph">
+ <>
+ <Header />
+     <div className="graph">
       {isError && <p className="errorP">Something went wrong...</p>}
       {isLoading && <p className="loadingP">Loading...</p>|| <div>
     
@@ -80,5 +84,7 @@ export function Statistics() {
       </div>
       { data &&<CsvDownloadButton data={data} filename="my_vacations.csv" >Download CSV File</CsvDownloadButton>}
     </div>
+    <Footer />
+ </>
   )
 }

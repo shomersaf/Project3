@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useAddVacationMutation } from '../store/api/vacations.api.';
 import { useNavigate, Navigate } from 'react-router-dom';
+import { Header } from '../ui/header';
+import { Footer } from '../ui/footer';
 
 
 export function AddVacation() {
@@ -56,7 +58,9 @@ export function AddVacation() {
 
     }
     return (
-        <div className="registration">
+        <>
+       <Header />
+       <div className="registration">
  <h2>Add Vacation</h2>
             {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
             {isLoading && <p className='loadingP'>Loading...</p> ||
@@ -97,6 +101,8 @@ export function AddVacation() {
            
           
         </div>
+        <Footer />
+       </>
     )
 }
 

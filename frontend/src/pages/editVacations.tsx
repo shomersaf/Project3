@@ -1,6 +1,8 @@
 
 import {useGetVacationsQuery, useDeleteVacationMutation } from "../store/api/vacations.api."
 import { useNavigate } from 'react-router-dom';
+import { Header } from "../ui/header";
+import { Footer } from "../ui/footer";
 export function EditVacations (){
     const {isLoading,isError,data} = useGetVacationsQuery("")
     const [deleteVacation]= useDeleteVacationMutation();
@@ -21,40 +23,42 @@ export function EditVacations (){
      });
    
        return(
+           <>
+           <Header/>
            <div className="wrapper">
    
-               <h2 className="headline">Edit Vacations</h2>
-              
-               {isLoading && <p className="loadingP">Loading...</p> ||
-               <div className = "cards">
-               {isError && <p className="errorP">Something went wrong...</p>}
-                   {data?.map(vacation => (
-                       <div key={vacation.destination+vacation.fromDate} className="card">
-                           <img src={vacation.imageSrc} alt ={vacation.destination} />
-                           <div className="description">
-                           <h3>{vacation.destination}</h3>
-                           <p className="about">{vacation.about}</p>
-                           <div className="date">
-                           <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
-                           <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
-                           </div>
-                           <div className="cardFooter">
-                               
-                           <div className="price">{formatter.format(vacation.price)}</div>
-                           <div className ="actionsDiv">
-                            
-                               <span className ="editS" title="edit" onClick={()=>{editVacationHandler(vacation.vcnId)}}>&#9998;</span>
-                               <span className="deleteS" title="delete" onClick ={()=>{if(confirm(`Delete \`${vacation.destination}\` destination?`)) deleteVacationHandler(vacation.vcnId)}}>&#10006;</span> 
-                           </div>
-                           </div>
-                           </div>
-                          
-                       </div>
-                   ))}
-       
-               </div>}
-       
+   <h2 className="headline">Edit Vacations</h2>
+  
+   {isLoading && <p className="loadingP">Loading...</p> ||
+   <div className = "cards">
+   {isError && <p className="errorP">Something went wrong...</p>}
+       {data?.map(vacation => (
+           <div key={vacation.destination+vacation.fromDate} className="card">
+               <img src={vacation.imageSrc} alt ={vacation.destination} />
+               <div className="description">
+               <h3>{vacation.destination}</h3>
+               <p className="about">{vacation.about}</p>
+               <div className="date">
+               <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
+               <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
+               </div>
+               <div className="cardFooter">
+                   
+               <div className="price">{formatter.format(vacation.price)}</div>
+               <div className ="actionsDiv">
                 
+                   <span className ="editS" title="edit" onClick={()=>{editVacationHandler(vacation.vcnId)}}>&#9998;</span>
+                   <span className="deleteS" title="delete" onClick ={()=>{if(confirm(`Delete \`${vacation.destination}\` destination?`)) deleteVacationHandler(vacation.vcnId)}}>&#10006;</span> 
+               </div>
+               </div>
+               </div>
+              
            </div>
+       ))}
+
+   </div>}
+</div>
+<Footer />
+           </>
        )
 }

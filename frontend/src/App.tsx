@@ -3,10 +3,10 @@ import {Routes, Route} from 'react-router-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 
 
-import { Header } from './ui/header';
+// import { Header } from './ui/header';
 import { IRoute } from './models/models';
 import { routes } from './data/routes';
-import { Footer } from './ui/footer';
+// import { Footer } from './ui/footer';
 
 
 
@@ -17,7 +17,7 @@ function App() {
     <>
 
       <Router>
-      <Header />
+      {/* <Header /> */}
   <main>
         <Routes>
 
@@ -26,7 +26,7 @@ function App() {
             })}
         </Routes>
         </main>
-<Footer />
+{/* <Footer /> */}
     </Router>
     </>
   )

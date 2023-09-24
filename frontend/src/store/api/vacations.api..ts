@@ -1,6 +1,6 @@
 
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { IVacation, IUser } from '../../models/models'
+import { IVacation, IUser, ILogin} from '../../models/models'
 
 export const vacationsApi = createApi({
     reducerPath: 'vacationsApi',
@@ -28,7 +28,7 @@ export const vacationsApi = createApi({
             }),
           }),
 
-          loginUser: build.mutation<IUser,object>({
+          loginUser: build.mutation<ILogin,object>({
             query: (payload) => ({
               url: '/users/login',
               method: 'POST',

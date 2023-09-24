@@ -29,6 +29,7 @@ const registerUserHandler = async (firstName:string,lastName:string,email:string
 
     return(
         <div className="registration">
+            <h1>My Vacations</h1>
          <h2>Registration</h2>
             {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
             {isLoading && <p className='loadingP'>Loading...</p> ||

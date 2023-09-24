@@ -3,11 +3,12 @@ import { AddVacation } from "../pages/addVacation";
 import { EditVacation } from "../pages/editVacation";
 import { EditVacations } from "../pages/editVacations";
 import { Login } from "../pages/login";
+import { Logout } from "../pages/logout";
 import { NotFound } from "../pages/notFound";
 import { Registration } from "../pages/registration";
 import { Statistics } from "../pages/statistics";
 import { Vacations } from "../pages/vacations";
-
+import { ProtectedRoute } from "../ui/protected-route";
 
 export const routes: Array<IRoute> = [
     {
@@ -19,14 +20,14 @@ export const routes: Array<IRoute> = [
  
   {
     path: "/vacations",
-    component: <Vacations />,
+    component: <ProtectedRoute><Vacations /></ProtectedRoute>,
     key: "Vacations",
     label: "Vacations"
   },
   
   {
     path: "/vacations/new",
-    component: <AddVacation />,
+    component:<ProtectedRoute><AddVacation /></ProtectedRoute> ,
     key: "AddVacation",
     label: "Add Vacation"
   },
@@ -34,14 +35,14 @@ export const routes: Array<IRoute> = [
  
   {
     path: "/vacations/byid/:vcnId",
-    component: <EditVacation />,
+    component: <ProtectedRoute><EditVacation /></ProtectedRoute>,
     key: "EditVacationById",
    // label: "Edit Vacation By Id"
   },
   
   {
     path: "/vacations/editAll",
-    component: <EditVacations />,
+    component:<ProtectedRoute><EditVacations /></ProtectedRoute>,
     key: "EditVacations",
     label: "Edit Vacations"
   },
@@ -55,7 +56,7 @@ export const routes: Array<IRoute> = [
   
   {
     path: "/vacations/statistics",
-    component: <Statistics />,
+    component: <ProtectedRoute><Statistics /></ProtectedRoute>,
     key: "Statistics",
     label: "Statistics"
   },
@@ -63,6 +64,12 @@ export const routes: Array<IRoute> = [
     path: "/",
     component: <Login />,
     key: "Login",
-    label: "Login"
+    //label: "Login"
+  },
+  {
+    path: "/",
+    component: <Logout />,
+    key: "Logout",
+    label: "Logout"
   }
   ]
