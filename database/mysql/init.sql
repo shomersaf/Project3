@@ -39,8 +39,8 @@ VALUES ('Eilat, Israel',
  \nIt has a great abundance of attractions and activities of every kind you can think of, a lively nightlife scene and not a few excellent restaurants and supermarkets that are open 24/7. 
  \nIn addition to all these, it is heaven on earth for shopaholics and despite the hot temperatures, \nit has an ice bar and a skating rink that will allow you to refresh yourself even 
  on particularly hot days - nice to meet you, Eilat!', 
- '2024-06-01', 
- '2024-06-07', 
+ '2023-06-01', 
+ '2023-06-07', 
  '1400', 
  'https://static.timesofisrael.com/www/uploads/2020/11/F201107YA10.jpg');
 
@@ -53,8 +53,8 @@ The island is also home to more UNESCO World Heritage Sites than any other Carib
 looking to soak in the local culture and learn about Cuba\'s fascinating history. Explore the cobblestone streets of 
 Old Havana where classic American cars line the street, tour the seaside fortress of El Morro in Santiago de Cuba and discover the colonial squares of Trinidad.    
 Choose from a range of cheap Cuba vacation deals including last minute Cuba deals and start planning your tropical getaway with Sunwing', 
- '2024-07-02', 
- '2024-07-08', 
+ '2022-07-02', 
+ '2022-07-08', 
  '5600', 
  'https://travelinsider.ru/wp-content/uploads/2017/06/Rooftop-pool-Gran-Hotel-Manzana-Kempinski.jpg');
  
