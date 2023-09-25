@@ -2,7 +2,7 @@ import { useLoginUserMutation } from "../store/api/vacations.api."
 import { useState} from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { setUser } from "../store/slices/userSlice";
+import { setUser,removeUser } from "../store/slices/userSlice";
 
 export function Login() {
     const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export function Login() {
     const [pswrd, setPswrd] = useState("");
 
     const [loginUser, { isSuccess, isLoading, isError, data }] = useLoginUserMutation()
-  
+  dispatch(removeUser())
     if(data?.signedToken){
         dispatch(setUser({
             token: data?.signedToken,
