@@ -40,7 +40,7 @@ const registerUserHandler = async (firstName:string,lastName:string,email:string
             <input type="password" placeholder="password... " value={pswrd} onChange = {(e)=>{setPswrd(e.target.value)}} />
             </form>
             <div className="buttons">
-            <button onClick ={()=>{registerUserHandler(firstName,lastName,email,pswrd,"admin")}}>Register</button>
+            <button onClick ={()=>{registerUserHandler(firstName,lastName,email,pswrd,"user")}}>Register</button>
             <button onClick ={()=>{
                   setFirstName("");
                   setLastName("");

@@ -5,18 +5,17 @@ import { Link, Navigate } from 'react-router-dom';
 export function Login() {
     const [email, setEmail] = useState("");
     const [pswrd, setPswrd] = useState("");
-
     const [loginUser, { isSuccess, isLoading, isError, data }] = useLoginUserMutation()
    
     if(data?.signedToken){
         localStorage.setItem("token", data?.signedToken)
+       //console.log(data?.userRole)
     }
+
+   
    
     useEffect(() => {
         localStorage.removeItem("token")
-        return () => {
-            console.log("Unmount Login Component Now!!!!")
-        }
     }, [])
     const loginUserHandler = async (email: string, pswrd: string) => {
         await loginUser({ email, pswrd }).unwrap(); {

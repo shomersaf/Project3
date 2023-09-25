@@ -1,8 +1,7 @@
 export interface IRoute {
     path: string,
     key: string,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    component: any,
+    component: JSX.Element,
     label?: string
   }
   export interface IVacation {
@@ -24,6 +23,7 @@ export interface IRoute {
     userRole:string
   }
   export interface  ILogin {
+    userRole: string;
     result: IResult[][];
     signedToken: string;
   }

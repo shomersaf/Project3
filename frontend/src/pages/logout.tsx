@@ -6,9 +6,6 @@ export function Logout() {
 
     useEffect(() => {
         localStorage.removeItem("token")
-        return () => {
-            console.log("Unmount Login Component Now!!!!")
-        }
     }, [])
     
     return (

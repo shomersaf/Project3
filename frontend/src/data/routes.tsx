@@ -10,6 +10,7 @@ import { Statistics } from "../pages/statistics";
 import { Vacations } from "../pages/vacations";
 import { ProtectedRoute } from "../ui/protected-route";
 
+
 export const routes: Array<IRoute> = [
     {
       path: "/users/new",
