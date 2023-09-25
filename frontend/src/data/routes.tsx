@@ -8,7 +8,8 @@ import { NotFound } from "../pages/notFound";
 import { Registration } from "../pages/registration";
 import { Statistics } from "../pages/statistics";
 import { Vacations } from "../pages/vacations";
-import { ProtectedRoute } from "../ui/protected-route";
+import { AdminRoute } from "../ui/admin-route";
+import { UserRoute } from "../ui/user-route";
 
 
 export const routes: Array<IRoute> = [
@@ -21,14 +22,14 @@ export const routes: Array<IRoute> = [
  
   {
     path: "/vacations",
-    component: <ProtectedRoute><Vacations /></ProtectedRoute>,
+    component: <UserRoute><Vacations /></UserRoute>,
     key: "Vacations",
     label: "Vacations"
   },
   
   {
     path: "/vacations/new",
-    component:<ProtectedRoute><AddVacation /></ProtectedRoute> ,
+    component:<AdminRoute><AddVacation /></AdminRoute> ,
     key: "AddVacation",
     label: "Add Vacation"
   },
@@ -36,14 +37,14 @@ export const routes: Array<IRoute> = [
  
   {
     path: "/vacations/byid/:vcnId",
-    component: <ProtectedRoute><EditVacation /></ProtectedRoute>,
+    component: <AdminRoute><EditVacation /></AdminRoute>,
     key: "EditVacationById",
    // label: "Edit Vacation By Id"
   },
   
   {
     path: "/vacations/editAll",
-    component:<ProtectedRoute><EditVacations /></ProtectedRoute>,
+    component:<AdminRoute><EditVacations /></AdminRoute>,
     key: "EditVacations",
     label: "Edit Vacations"
   },
@@ -57,7 +58,7 @@ export const routes: Array<IRoute> = [
   
   {
     path: "/vacations/statistics",
-    component: <ProtectedRoute><Statistics /></ProtectedRoute>,
+    component: <AdminRoute><Statistics /></AdminRoute>,
     key: "Statistics",
     label: "Statistics"
   },

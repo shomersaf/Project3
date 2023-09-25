@@ -1,22 +1,26 @@
 import { useLoginUserMutation } from "../store/api/vacations.api."
-import { useState,useEffect } from 'react';
+import { useState} from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/slices/userSlice";
 
 export function Login() {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [pswrd, setPswrd] = useState("");
+
     const [loginUser, { isSuccess, isLoading, isError, data }] = useLoginUserMutation()
-   
+  
     if(data?.signedToken){
-        localStorage.setItem("token", data?.signedToken)
-       //console.log(data?.userRole)
+        dispatch(setUser({
+            token: data?.signedToken,
+            role: data?.userRole
+           }))
+      
     }
 
    
-   
-    useEffect(() => {
-        localStorage.removeItem("token")
-    }, [])
+  
     const loginUserHandler = async (email: string, pswrd: string) => {
         await loginUser({ email, pswrd }).unwrap(); {
              setEmail("")
@@ -47,7 +51,7 @@ export function Login() {
                     <p><Link to="users/new">Register now</Link></p>
                 </div>
             }
-            {isSuccess &&  <Navigate to="/vacations/editAll" replace />}
+            {isSuccess &&  <Navigate to="/vacations" replace />}
         </div>
     )
 }
