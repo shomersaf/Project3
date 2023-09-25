@@ -2,7 +2,8 @@ export interface IRoute {
     path: string,
     key: string,
     component: JSX.Element,
-    label?: string
+    label?: string,
+    title?:string
   }
   export interface IVacation {
     vcnId:string;

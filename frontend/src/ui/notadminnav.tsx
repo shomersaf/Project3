@@ -1,13 +1,13 @@
 import {Link} from 'react-router-dom';
 import { IRoute } from '../models/models';
-import { routes } from '../data/routes';
+import { notadminroutes } from '../data/notadmin';
 
 
-export function Nav (){
+export function NotAdminNav (){
     return(
   <nav>
  
-  {routes.filter(r => r.label).map((route: IRoute) => {
+  {notadminroutes.filter(r => r.label).map((route: IRoute) => {
             return <Link key={route.label} to={route.path} title={route.title} > {route.label} </Link>
         })}
   </nav>
