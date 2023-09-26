@@ -56,7 +56,7 @@ export function Login() {
                     </div>
 
                     <p>Don't have an account?</p>
-                    <p><Link to="users/new">Register now</Link></p>
+                    <p><Link to="/users/new">Register now</Link></p>
                 </div>
             }
             {/* {isSuccess &&  <Navigate to="/" />} */}
