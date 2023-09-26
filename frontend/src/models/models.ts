@@ -3,7 +3,6 @@ export interface IRoute {
     key: string,
     component: JSX.Element,
     label?: string,
-    title?:string
   }
   export interface IVacation {
     vcnId:string;
@@ -15,7 +14,12 @@ export interface IRoute {
     imageSrc: string;
     followers: number;
   }
-  
+  export interface IToken {
+    userName: string;
+    role: string;
+    iat: number;
+    exp: number;
+  }
   export interface IUser {
     firstName:string,
     lastName:string,

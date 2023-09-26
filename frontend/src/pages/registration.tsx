@@ -50,9 +50,9 @@ const registerUserHandler = async (firstName:string,lastName:string,email:string
             </div>
             
             <p>Already a member?</p>
-            <p><Link to="/">Login</Link></p></div>
+            <p><Link to="/login">Login</Link></p></div>
             }
-            {isSuccess && <Navigate to="/" replace />}
+            {isSuccess && <Navigate to="/login" />}
         </div>
     )
 }

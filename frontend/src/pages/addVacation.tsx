@@ -91,12 +91,12 @@ export function AddVacation() {
                   setToDate("");
                   setPrice("");
                   setImageSrc("");
-                  navigate("/vacations");
+                  navigate("/");
             }}>Cancel</button>
             </div>
             </div>
             }
-            {isSuccess && <Navigate to="/vacations" replace />}
+            {isSuccess && <Navigate to="/" />}
 
            
           

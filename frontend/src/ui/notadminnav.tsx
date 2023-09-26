@@ -8,7 +8,7 @@ export function NotAdminNav (){
   <nav>
  
   {notadminroutes.filter(r => r.label).map((route: IRoute) => {
-            return <Link key={route.label} to={route.path} title={route.title} > {route.label} </Link>
+            return <Link key={route.label} to={route.path} title={route.key} > {route.label} </Link>
         })}
   </nav>
     )

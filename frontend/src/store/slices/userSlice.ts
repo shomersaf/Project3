@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState ={
-    // email:null,
+    email:null,
     token:null,
     role: null
 };
@@ -9,12 +9,14 @@ name:'user',
 initialState,
 reducers:{
     setUser(state, action){
-        // state.email = action.payload.email,
+        state.email = action.payload.email,
+        // localStorage.setItem("token",action.payload.token)
         state.token = action.payload.token,
         state.role = action.payload.role
     },
     removeUser(state){
-        // state.email = null,
+        state.email = null,
+        //localStorage.removeItem("token")
         state.token = null,
         state.role = null
     },

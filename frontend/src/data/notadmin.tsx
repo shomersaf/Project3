@@ -9,8 +9,9 @@ import { Registration } from "../pages/registration";
 import { Statistics } from "../pages/statistics";
 import { Vacations } from "../pages/vacations";
 import { AdminRoute } from "../ui/admin-route";
+//import { AuthRoute } from "../ui/auth-route";
 import { UserRoute } from "../ui/user-route";
-
+import { Home } from "../pages/home";
 
 export const notadminroutes: Array<IRoute> = [
     {
@@ -18,23 +19,32 @@ export const notadminroutes: Array<IRoute> = [
       component: <Registration />,
       key: "Registration",
      // label: "Registration",
-    // title:"Registration"
+
   },
  
+ 
+  {
+    path: "/",
+    component:<Home />,
+    key: "Home",
+   // label: "Home",
+  },
+  
   {
     path: "/vacations",
     component: <UserRoute><Vacations /></UserRoute>,
     key: "Vacations",
-    // label: "Vacations",
-    // title:"Vacations"
+    label: "Vacations",
+ 
   },
+  
   
   {
     path: "/vacations/new",
     component:<AdminRoute><AddVacation /></AdminRoute> ,
     key: "AddVacation",
     //label: "Add Vacation",
-    //title:"Only for admins"
+ 
   },
   
  
@@ -43,7 +53,7 @@ export const notadminroutes: Array<IRoute> = [
     component: <AdminRoute><EditVacation /></AdminRoute>,
     key: "EditVacationById",
    // label: "Edit Vacation By Id",
-    // title:"Only for admins"
+
   },
   
   {
@@ -66,19 +76,19 @@ export const notadminroutes: Array<IRoute> = [
     component: <AdminRoute><Statistics /></AdminRoute>,
     key: "Statistics",
     //label: "Statistics",
-   // title:"Only for admins"
+
   },
   {
-    path: "/",
+    path: "/login",
     component: <Login />,
     key: "Login",
     //label: "Login"
   },
   {
-    path: "/",
+    path: "/logout",
     component: <Logout />,
     key: "Logout",
     label: "Logout",
-   title:"Logout"
+
   }
   ]

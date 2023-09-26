@@ -2,6 +2,7 @@
 import { useGetVacationsQuery } from "../store/api/vacations.api."
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
+
 export function Vacations (){
  const {isLoading,isError,data} = useGetVacationsQuery("")
 

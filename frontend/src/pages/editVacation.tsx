@@ -141,7 +141,7 @@ export function EditVacation() {
 
 
             }
-            {isSuccess && <Navigate to="/vacations/editAll" replace />}
+            {isSuccess && <Navigate to="/vacations/editAll" />}
         </div>
         <Footer />
        </>

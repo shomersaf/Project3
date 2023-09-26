@@ -1,12 +1,15 @@
-import { useSelector } from "react-redux";
+
+import jwt_decode from "jwt-decode";
+import { IToken } from "../../models/models";
 
 
 export function useAuth(){
-    const {user}= useSelector(state =>state as never);
-    const { token, role} = user
+    const token: string | null = localStorage.getItem("token")
+    const decoded = jwt_decode<IToken>(token as string);
+    console.log("decoded.role: ", decoded.role)
+
     return{
         isAuth: !!token,
-        token,
-        role
+         role: decoded.role
     }
 }
