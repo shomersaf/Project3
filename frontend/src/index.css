@@ -90,7 +90,7 @@ nav {
 h3 {
   text-transform: capitalize;
 }
-.card img, form img {
+.card img, form img  .mycard img, form img {
   object-fit: cover;
   width: 500px;
   min-height: 250px;

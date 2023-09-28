@@ -1,11 +1,14 @@
 
+// import { useState } from "react";
 import { useGetVacationsQuery } from "../store/api/vacations.api."
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
 
+
+
 export function Vacations (){
  const {isLoading,isError,data} = useGetVacationsQuery("")
-
+// const [count,setCount] = useState()
  const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -59,6 +62,15 @@ export function Vacations (){
 
  
 </div>
+{/* <nav aria-label="Page navigation example">
+  <ul className="pagination">
+    <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+    <li className="page-item"><a className="page-link" href="#">1</a></li>
+    <li className="page-item"><a className="page-link" href="#">2</a></li>
+    <li className="page-item"><a className="page-link" href="#">3</a></li>
+    <li className="page-item"><a className="page-link" href="#">Next</a></li>
+  </ul>
+</nav> */}
 <Footer />
       </>
     )
