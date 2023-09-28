@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import { IRoute } from './models/models';
-import { routes } from './data/routes';
+import { routes } from './routes/routes';
 
 
 function App() {

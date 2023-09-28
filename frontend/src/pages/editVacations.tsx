@@ -36,21 +36,27 @@ export function EditVacations (){
            <div key={vacation.destination+vacation.fromDate} className="card">
                <img src={vacation.imageSrc} alt ={vacation.destination} />
                <div className="description">
+               <div className="top">
                <h3>{vacation.destination}</h3>
                <p className="about">{vacation.about}</p>
+               </div>
+             
+               <div className="downtown">
                <div className="date">
                <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
                <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
                </div>
                <div className="cardFooter">
                    
-               <div className="price">{formatter.format(vacation.price)}</div>
-               <div className ="actionsDiv">
-                
-                   <span className ="editS" title="edit" onClick={()=>{editVacationHandler(vacation.vcnId)}}>&#9998;</span>
-                   <span className="deleteS" title="delete" onClick ={()=>{if(confirm(`Delete \`${vacation.destination}\` destination?`)) deleteVacationHandler(vacation.vcnId)}}>&#10006;</span> 
+                   <div className="price">{formatter.format(vacation.price)}</div>
+                   <div className ="actionsDiv">
+                    
+                       <span className ="editS" title="edit" onClick={()=>{editVacationHandler(vacation.vcnId)}}>&#9998;</span>
+                       <span className="deleteS" title="delete" onClick ={()=>{if(confirm(`Delete \`${vacation.destination}\` destination?`)) deleteVacationHandler(vacation.vcnId)}}>&#10006;</span> 
+                   </div>
+                   </div>
                </div>
-               </div>
+             
                </div>
               
            </div>

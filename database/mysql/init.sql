@@ -95,7 +95,7 @@ VALUES ('Karelia, Russia',
 'The Republic of Karelia is located in the north-western part of Russia, bordering Finland. 
  The region is of great interest in the first place from a tourist point of view. 
  Active, cultural and green forms of tourism are the most popular.', 
- '2024-12-29', 
+ '2023-12-29', 
  '2024-01-19', 
  '2450', 
  'https://atlasprirodirossii.ru/wp-content/uploads/2019/12/otdyh-s-detmi-v-karelii-zimoj-2.jpg');

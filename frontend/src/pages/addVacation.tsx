@@ -96,7 +96,7 @@ export function AddVacation() {
             </div>
             </div>
             }
-            {isSuccess && <Navigate to="/" />}
+            {isSuccess && <Navigate to="/vacations/editAll" />}
 
            
           

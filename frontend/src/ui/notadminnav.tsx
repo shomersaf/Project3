@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import { IRoute } from '../models/models';
-import { notadminroutes } from '../data/notadmin';
+import { notadminroutes } from '../routes/notadmin';
 
 
 export function NotAdminNav (){

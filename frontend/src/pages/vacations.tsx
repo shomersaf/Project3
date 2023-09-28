@@ -29,8 +29,13 @@ export function Vacations (){
         <div key={vacation.destination+vacation.fromDate} className="card">
             <img src={vacation.imageSrc} alt ={vacation.destination} />
             <div className="description">
-            <h3>{vacation.destination}</h3>
+              <div className="top">
+              <h3>{vacation.destination}</h3>
             <p className="about">{vacation.about}</p>
+           
+              </div>
+           
+            <div className="downtown">
             <div className="date">
             <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
             <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
@@ -43,6 +48,8 @@ export function Vacations (){
                 <span className="likes">{vacation.followers}</span> 
             </div>
             </div>
+            </div>
+            
             </div>
            
         </div>

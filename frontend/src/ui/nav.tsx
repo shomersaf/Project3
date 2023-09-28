@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import { IRoute } from '../models/models';
-import { routes } from '../data/routes';
+import { routes } from '../routes/routes';
 
 
 export function Nav (){

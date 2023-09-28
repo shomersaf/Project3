@@ -2,7 +2,7 @@ import { useLoginUserMutation } from "../store/api/vacations.api."
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-//import { removeUser } from "../store/slices/userSlice";
+import { removeUser } from "../store/slices/userSlice";
 import { setUser } from "../store/slices/userSlice";
 
 
@@ -12,7 +12,7 @@ export function Login() {
     const [pswrd, setPswrd] = useState("");
     const navigate = useNavigate()
     const [loginUser, { isLoading, isError, data }] = useLoginUserMutation()
-    // dispatch(removeUser())
+     dispatch(removeUser())
     const loginUserHandler = async (email: string, pswrd: string) => {
         await loginUser({ email, pswrd }).unwrap(); {
             setEmail("")
