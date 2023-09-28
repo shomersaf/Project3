@@ -1,7 +1,7 @@
 const { expect } = require("chai")
 const axios = require("axios")
 const userId = 5;
-const vcnId = 5;
+const vcnId = 5 | 6 |7|8|9|10|11|12|13|17;
 const dummyFollowing = {
   "userId":userId, 
   "vcnId":vcnId

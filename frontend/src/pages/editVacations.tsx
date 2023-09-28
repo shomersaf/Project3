@@ -1,10 +1,10 @@
 
-import {useGetVacationsQuery, useDeleteVacationMutation } from "../store/api/vacations.api."
+import {useEditVacationsQuery, useDeleteVacationMutation } from "../store/api/vacations.api."
 import { useNavigate } from 'react-router-dom';
 import { Header } from "../ui/header";
 import { Footer } from "../ui/footer";
 export function EditVacations (){
-    const {isLoading,isError,data} = useGetVacationsQuery("")
+    const {isLoading,isError,data} = useEditVacationsQuery("")
     const [deleteVacation]= useDeleteVacationMutation();
     const navigate = useNavigate();
     const editVacationHandler =(vcnId: string)=>{

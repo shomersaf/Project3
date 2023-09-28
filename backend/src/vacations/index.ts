@@ -75,8 +75,13 @@ async function postVacation(req: Request, res: Response, next: NextFunction) {
 
 async function getVacations(req: Request, res: Response, next: NextFunction) {
   try {
-    const result = await getVacationsHandler();
-    //console.log(result);
+   const { _limit } = req.query;
+   var limitPossible:any;
+   console.log("limit: ",_limit);
+  _limit==='all'?limitPossible ='':limitPossible ="LIMIT "+ _limit
+  console.log("limitPossible: ", limitPossible)
+    const result = await getVacationsHandler(limitPossible);
+   
     res.status(200).json(result);
   } catch (error) {
     return next(error);

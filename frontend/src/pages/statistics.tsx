@@ -1,5 +1,5 @@
   
-import { useGetVacationsQuery } from "../store/api/vacations.api."
+import { useEditVacationsQuery } from "../store/api/vacations.api."
 import { Chart } from 'primereact/chart';
 
 import CsvDownloadButton from 'react-json-to-csv';
@@ -7,7 +7,7 @@ import { Header } from "../ui/header";
 import { Footer } from "../ui/footer";
 
 export function Statistics() {
-  const { isError, isLoading, data } = useGetVacationsQuery("")
+  const { isError, isLoading, data } = useEditVacationsQuery("")
   const destinations = data?.map(vacation => (vacation.destination))
   const followers = data?.map(vacation => (vacation.followers))
   const documentStyle = getComputedStyle(document.documentElement);

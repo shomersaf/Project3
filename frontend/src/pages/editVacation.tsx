@@ -1,4 +1,4 @@
-import { useGetVacationsQuery, usePutVacationMutation } from "../store/api/vacations.api.";
+import { useEditVacationsQuery, usePutVacationMutation } from "../store/api/vacations.api.";
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useState} from 'react';
 import { Header } from "../ui/header";
@@ -11,7 +11,7 @@ export function EditVacation() {
     const [price, setPrice] = useState("");
     const [imageSrc, setImageSrc] = useState("");
     const vcnId = window.location.pathname.replace('/vacations/byid/', "");
-    const { data } = useGetVacationsQuery("")
+    const { data } = useEditVacationsQuery("")
     const currentVacation = data?.filter(vacation => (vacation.vcnId == vcnId))
     const [destination, setDestination] = useState("");
     const [about, setAbout] = useState("");
@@ -85,9 +85,12 @@ export function EditVacation() {
 
                                 <span>About:</span>
                                 <textarea  value={about} onChange={(e) => { setAbout(e.target.value) }}></textarea>
+                                
                                 <div className="dates">
+                                
                                     <div className="fromDate">
-                                        <span>FROM:</span>
+                                        
+                                        <span>FROM* :</span>
                                        
                                         <div className="newDate">
                               
@@ -95,7 +98,7 @@ export function EditVacation() {
                                         </div>
                                     </div>
                                     <div className="fromDate">
-                                        <span>TO:</span>
+                                        <span>TO*:</span>
                                         
                                         <div className="newDate">
                                
@@ -103,7 +106,7 @@ export function EditVacation() {
                                         </div>
                                     </div>
                                 </div>
-
+                                <i>*Past dates adding is not allowed. So mind it while editing the old vacations - renew the dates for relevant!  </i>
 
                                 <img src={vacation.imageSrc} alt={vacation.destination} />
                                 <div className="imgRef">

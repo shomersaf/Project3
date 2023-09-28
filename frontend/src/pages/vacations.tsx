@@ -1,5 +1,5 @@
 
-// import { useState } from "react";
+import { useState } from "react";
 import { useGetVacationsQuery } from "../store/api/vacations.api."
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
@@ -7,8 +7,9 @@ import { Header } from "../ui/header";
 
 
 export function Vacations (){
- const {isLoading,isError,data} = useGetVacationsQuery("")
-// const [count,setCount] = useState()
+  const [count,setCount] = useState("")
+ const {isLoading,isError,data} = useGetVacationsQuery(count)
+
  const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -26,8 +27,18 @@ export function Vacations (){
 
 {isError && <p className="errorP">Something went wrong...</p>}
 {isLoading && <p className="loadingP">Loading...</p> ||
-<div className = "cards">
+<div className="wrapper">
+<div className="pagination">
+    <select value ={count} onChange={(e)=>{setCount(e.target.value)}}>
+<option value="all">all</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+    </select>
+   </div>
 
+<div className = "cards">
+  
     {data?.map(vacation => (
         <div key={vacation.destination+vacation.fromDate} className="card">
             <img src={vacation.imageSrc} alt ={vacation.destination} />
@@ -58,6 +69,7 @@ export function Vacations (){
         </div>
     ))}
 
+</div>
 </div>}
 
  
