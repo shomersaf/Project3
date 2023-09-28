@@ -7,7 +7,9 @@ import { Header } from "../ui/header";
 
 
 export function Vacations (){
-  const [count,setCount] = useState("")
+  const [count,setCount] = useState("all")
+
+
  const {isLoading,isError,data} = useGetVacationsQuery(count)
 
  const formatter = new Intl.NumberFormat('en-US', {
@@ -31,10 +33,11 @@ export function Vacations (){
 <div className="pagination">
     <select value ={count} onChange={(e)=>{setCount(e.target.value)}}>
 <option value="all">all</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
+<option value="1">get next 2 pages starting from page 1</option>
+<option value="3">get next 2 pages starting from page 3</option>
+<option value="5">get next 2 pages starting from page 5</option>
     </select>
+    
    </div>
 
 <div className = "cards">

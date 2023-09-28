@@ -11,17 +11,24 @@ export const vacationsApi = createApi({
     refetchOnFocus:true,
     refetchOnMountOrArgChange:true,
     endpoints: build =>({
+        // getVacations: build.query<IVacation[], string>({
+        //     query:(limit='all')=>
+        //         `vacations?${`_limit=${limit}`}`,   
+        //         providesTags: ['IVacation[]'],       
+        // }),
         getVacations: build.query<IVacation[], string>({
-            query:(limit='all')=>
-                `vacations?${limit && `_limit=${limit}`}`,   
-                providesTags: ['IVacation[]'],       
-        }),
+          query:(stepFrom='all')=>
+              `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,   
+              providesTags: ['IVacation[]'],       
+      }),
         
         editVacations: build.query<IVacation[], string>({
           query:()=>
           `vacations?${`_limit=all`}`, 
               providesTags: ['IVacation[]'],       
       }),
+     
+  
     
       
           registerUser: build.mutation<IUser,object>({
