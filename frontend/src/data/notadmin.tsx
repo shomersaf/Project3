@@ -9,7 +9,7 @@ import { Registration } from "../pages/registration";
 import { Statistics } from "../pages/statistics";
 import { Vacations } from "../pages/vacations";
 import { AdminRoute } from "../ui/admin-route";
-//import { AuthRoute } from "../ui/auth-route";
+import { AuthRoute } from "../ui/auth-route";
 import { UserRoute } from "../ui/user-route";
 import { Home } from "../pages/home";
 
@@ -25,7 +25,7 @@ export const notadminroutes: Array<IRoute> = [
  
   {
     path: "/",
-    component:<Home />,
+    component:<AuthRoute><Home /></AuthRoute>,
     key: "Home",
    // label: "Home",
   },

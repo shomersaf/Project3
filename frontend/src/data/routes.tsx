@@ -10,28 +10,28 @@ import { Statistics } from "../pages/statistics";
 import { Vacations } from "../pages/vacations";
 import { AdminRoute } from "../ui/admin-route";
 import { UserRoute } from "../ui/user-route";
-//import { AuthRoute } from "../ui/auth-route";
+import { AuthRoute } from "../ui/auth-route";
 import { Home } from "../pages/home";
 
 export const routes: Array<IRoute> = [
     {
       path: "/users/new",
       component: <Registration />,
-      key: "Registration",
+      key: "A_Registration",
      // label: "Registration",
   },
  
   {
     path: "/",
-    component:<Home />,
-    key: "Home",
+    component:<AuthRoute><Home /></AuthRoute>,
+    key: "A_Home",
     //label: "Home",
   },
    
   {
     path: "/vacations",
     component: <UserRoute><Vacations /></UserRoute>,
-    key: "Vacations",
+    key: "A_Vacations",
     //label: "Vacations",
  
   },
@@ -39,7 +39,7 @@ export const routes: Array<IRoute> = [
   {
     path: "/vacations/new",
     component:<AdminRoute><AddVacation /></AdminRoute> ,
-    key: "AddVacation",
+    key: "A_AddVacation",
     label: "Add Vacation",
   },
   
@@ -55,7 +55,7 @@ export const routes: Array<IRoute> = [
   {
     path: "/vacations/editAll",
     component:<AdminRoute><EditVacations /></AdminRoute>,
-    key: "EditVacations",
+    key: "A_EditVacations",
     label: "Edit Vacations",
 
   },
@@ -63,27 +63,27 @@ export const routes: Array<IRoute> = [
   {
     path: "*",
     component: <NotFound />,
-    key: "NotFound",
+    key: "A_NotFound",
    // label: "Not Found"
   },
   
   {
     path: "/vacations/statistics",
     component: <AdminRoute><Statistics /></AdminRoute>,
-    key: "Statistics",
+    key: "A_Statistics",
     label: "Statistics",
 
   },
   {
     path: "/login",
     component: <Login />,
-    key: "Login",
+    key: "A_Login",
     //label: "Login"
   },
   {
     path: "/logout",
     component: <Logout />,
-    key: "Logout",
+    key: "A_Logout",
     label: "Logout",
   }
   ]

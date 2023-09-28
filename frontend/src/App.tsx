@@ -12,9 +12,7 @@ function App() {
         <main>
           <Routes>
           {routes.map((route: IRoute) => {
-            return <>
-            <Route path={route.path} key={route.key} element={route.component} />
-            </>
+            return <Route path={route.path} key={route.key} element={route.component} /> 
           })}
         </Routes>
         </main>
