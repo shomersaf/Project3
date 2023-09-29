@@ -28,15 +28,12 @@ export function Vacations() {
         {isError && <p className="errorP">Something went wrong...</p>}
         {isLoading && <p className="loadingP">Loading...</p> ||
           <div className="wrapper">
+
             <div className="pagination">
-
-
               <button onClick={() => { prevPage(count, page, vacationsNum, step) }}>prev</button>
               <div className="pageNum">{page !== 0 ? page : "all"}</div>
-              <button onClick={() => { setCount("all"); setPage(0); }}>all</button>
+              {/* <button onClick={() => { setCount("all"); setPage(0); }}>all</button> */}
               <button onClick={() => { nextPage(count, page, vacationsNum, step) }}>next</button>
-
-
             </div>
 
             <div className="cards">
@@ -73,7 +70,7 @@ export function Vacations() {
   )
 
   function nextPage(count: string, page: number, vacationsNum: number | undefined, step: number) {
-    if (count == "all" || vacationsNum && Number(count) <= vacationsNum + step) {
+    if (count == "all" || vacationsNum && Number(count) <=vacationsNum/step +(step*2-2)) {
       if (page == 0) {
         setCount("0");
         setPage(page + 1);
