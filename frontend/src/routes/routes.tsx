@@ -10,7 +10,7 @@ import { Statistics } from "../pages/statistics";
 import { Vacations } from "../pages/vacations";
 import { AdminRoute } from "../ui/admin-route";
 import { UserRoute } from "../ui/user-route";
-import { AuthRoute } from "../ui/auth-route";
+//import { AuthRoute } from "../ui/auth-route";
 import { Home } from "../pages/home";
 
 export const routes: Array<IRoute> = [
@@ -23,7 +23,7 @@ export const routes: Array<IRoute> = [
  
   {
     path: "/",
-    component:<AuthRoute><Home /></AuthRoute>,
+    component:<Home />,
     key: "A_Home",
     //label: "Home",
   },

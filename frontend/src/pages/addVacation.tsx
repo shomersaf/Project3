@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAddVacationMutation } from '../store/api/vacations.api.';
-import { useNavigate, Navigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Header } from '../ui/header';
 import { Footer } from '../ui/footer';
 
@@ -13,7 +14,7 @@ export function AddVacation() {
     const [price, setPrice] = useState("");
     const [imageSrc, setImageSrc] = useState("");
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [addVacation, { isSuccess, isLoading, isError }] = useAddVacationMutation()
 
     const addVacationHandler = async (
@@ -91,7 +92,7 @@ export function AddVacation() {
                   setToDate("");
                   setPrice("");
                   setImageSrc("");
-                  navigate("/");
+                //   navigate("/");
             }}>Cancel</button>
             </div>
             </div>
