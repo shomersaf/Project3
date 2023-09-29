@@ -7,7 +7,7 @@ import { Header } from "../ui/header";
 export function Vacations() {
   const [count, setCount] = useState("0")
   const [page, setPage] = useState(1)
-  const step: number = 3;
+  const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(count)
   const vacationsNum: number | undefined = data?.length
   const formatter = new Intl.NumberFormat('en-US', {
