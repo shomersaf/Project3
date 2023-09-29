@@ -75,13 +75,13 @@ export function Statistics() {
       <Chart type="bar" data={chartData} options={chartOptions} />
       </div>
       }
-      <div className="brif">
+      {/* <div className="brif">
         <h3>Followers per Vacation:</h3>
       {data?.map(vacation => (
         <p key={vacation.vcnId}>{vacation.destination} - {vacation.followers}</p> 
         ))}
 
-      </div>
+      </div> */}
       { data &&<CsvDownloadButton data={data} filename="my_vacations.csv" >Download CSV File</CsvDownloadButton>}
     </div>
     <Footer />
