@@ -7,10 +7,13 @@ import { Header } from "../ui/header";
 
 
 export function Vacations (){
-  const [count,setCount] = useState("all")
-
+  const [count,setCount] = useState("0")
+  const [page,setPage] = useState(1)
+   const step:number =3;
 
  const {isLoading,isError,data} = useGetVacationsQuery(count)
+const vacationsNum:number | undefined =  data?.length
+
 
  const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -19,6 +22,9 @@ export function Vacations (){
     // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
+
+ 
+  
 
     return(
       <>
@@ -30,13 +36,14 @@ export function Vacations (){
 {isError && <p className="errorP">Something went wrong...</p>}
 {isLoading && <p className="loadingP">Loading...</p> ||
 <div className="wrapper">
-<div className="pagination">
-    <select value ={count} onChange={(e)=>{setCount(e.target.value)}}>
-<option value="all">all</option>
-<option value="1">get next 2 pages starting from page 1</option>
-<option value="3">get next 2 pages starting from page 3</option>
-<option value="5">get next 2 pages starting from page 5</option>
-    </select>
+<div className="pagination nav">
+  
+
+    <button onClick ={()=>{prevPage(count,page,vacationsNum,step)}}>prev</button>
+    <div className="pageNum">{page!==0?page:"all"}</div>
+    <button onClick ={()=>{setCount("all");setPage(0);}}>all</button>
+    <button onClick ={()=>{nextPage(count,page,vacationsNum,step)}}>next</button>
+
     
    </div>
 
@@ -77,16 +84,33 @@ export function Vacations (){
 
  
 </div>
-{/* <nav aria-label="Page navigation example">
-  <ul className="pagination">
-    <li className="page-item"><a className="page-link" href="#">Previous</a></li>
-    <li className="page-item"><a className="page-link" href="#">1</a></li>
-    <li className="page-item"><a className="page-link" href="#">2</a></li>
-    <li className="page-item"><a className="page-link" href="#">3</a></li>
-    <li className="page-item"><a className="page-link" href="#">Next</a></li>
-  </ul>
-</nav> */}
+
 <Footer />
       </>
     )
+
+    function nextPage(count:string,page:number,vacationsNum:number | undefined,step:number){
+      if(count == "all" || vacationsNum && Number(count)<=vacationsNum+step){
+        if( page==0) {
+          setCount("0");
+          setPage(page+1);
+        } else{
+          setCount(((+count) + step).toString())
+          setPage(page+1);
+        }
+       }
+      }
+
+      function prevPage(count:string,page:number,vacationsNum:number | undefined,step:number){
+        if(vacationsNum && count == "all" || vacationsNum && Number(count)>0 ){
+          if( page==0) {
+            setCount("all");
+          
+          } else{
+            setCount(((+count) - step).toString())
+            setPage(page-1);
+          }
+         }
+        }
+
 }

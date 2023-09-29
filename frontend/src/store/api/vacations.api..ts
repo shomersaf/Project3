@@ -24,7 +24,7 @@ export const vacationsApi = createApi({
         
         editVacations: build.query<IVacation[], string>({
           query:()=>
-          `vacations?${`_limit=all`}`, 
+          `vacations?${`_stepFrom=all`}`, 
               providesTags: ['IVacation[]'],       
       }),
      

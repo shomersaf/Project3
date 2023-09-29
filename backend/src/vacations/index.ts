@@ -76,7 +76,7 @@ async function postVacation(req: Request, res: Response, next: NextFunction) {
 async function getVacations(req: Request, res: Response, next: NextFunction) {
   try {
    const {_stepFrom } = req.query;
-   const step = ",2"
+   const step = ",3"
    var limitPossible:any;
    console.log("limit: ",_stepFrom);
    if (_stepFrom?.toString().startsWith("all") == true){
