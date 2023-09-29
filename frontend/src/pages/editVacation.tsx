@@ -106,12 +106,13 @@ export function EditVacation() {
                                         </div>
                                     </div>
                                 </div>
-                                <i>*Past dates adding is not allowed. So mind it while editing the old vacations - renew the dates for relevant!  </i>
+                                <div className="notation">*Past dates adding is not allowed. So mind it while editing the old vacations - renew the dates for relevant!  </div>
 
                                 <img src={vacation.imageSrc} alt={vacation.destination} />
                                 <div className="imgRef">
-                                    <span>Image url:</span>
+                                    <span>Image url:**</span>
                                     <input type="text"  value={imageSrc} onChange={(e) => { setImageSrc(e.target.value) }} />
+                                    <div className="notation">**Should have proper format ending!</div>
                                 </div>
                                 <div className="priceInputDiv">
                                     <span>Price (up to 10,000):</span>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAddVacationMutation } from '../store/api/vacations.api.';
-// import { useNavigate } from 'react-router-dom';
+
 import { Navigate } from 'react-router-dom';
 import { Header } from '../ui/header';
 import { Footer } from '../ui/footer';
@@ -14,7 +14,7 @@ export function AddVacation() {
     const [price, setPrice] = useState("");
     const [imageSrc, setImageSrc] = useState("");
 
-    // const navigate = useNavigate();
+    
     const [addVacation, { isSuccess, isLoading, isError }] = useAddVacationMutation()
 
     const addVacationHandler = async (
@@ -68,12 +68,12 @@ export function AddVacation() {
             <div className="wrapper">
                   <form action="#">
                 <input type="text" placeholder="destination..." value={destination} onChange={(e) => { setDestination(e.target.value) }} />
-                {/* <input type="text" placeholder="about..." value={about} onChange = {(e)=>{setAbout(e.target.value)}} /> */}
+              
                 <textarea placeholder="about..." value={about} onChange={(e) => { setAbout(e.target.value) }}></textarea>
                 <input type="date" placeholder="fromDate..." value={fromDate} onChange={(e) => { setfromDate(e.target.value) }} />
                 <input type="date" placeholder="toDate... " value={toDate} onChange={(e) => { setToDate(e.target.value) }} />
                 <input type="number" placeholder="price (up to 10,000)... " value={price} onChange={(e) => { setPrice(e.target.value) }} />
-                <input type="text" placeholder="imageSrc... " value={imageSrc} onChange={(e) => { setImageSrc(e.target.value) }} />
+                <input type="text" placeholder="imageSrc (should have proper format ending!) " value={imageSrc} onChange={(e) => { setImageSrc(e.target.value) }} />
             </form>
             <div className="buttons">
             <button onClick={() => {
@@ -92,7 +92,7 @@ export function AddVacation() {
                   setToDate("");
                   setPrice("");
                   setImageSrc("");
-                //   navigate("/");
+             
             }}>Cancel</button>
             </div>
             </div>
