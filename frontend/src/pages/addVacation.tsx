@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useAddVacationMutation } from '../store/api/vacations.api.';
 
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Header } from '../ui/header';
 import { Footer } from '../ui/footer';
 
 
 export function AddVacation() {
+    const navigate = useNavigate();
     const [destination, setDestination] = useState("");
     const [about, setAbout] = useState("");
     const [fromDate, setfromDate] = useState("");
@@ -15,8 +16,8 @@ export function AddVacation() {
     const [imageSrc, setImageSrc] = useState("");
 
     
-    const [addVacation, { isSuccess, isLoading, isError }] = useAddVacationMutation()
-
+    const [addVacation, { isSuccess, isLoading, isError, status }] = useAddVacationMutation()
+ 
     const addVacationHandler = async (
         destination: string,
         about: string,
@@ -35,7 +36,7 @@ export function AddVacation() {
             imageSrc &&
             (Number(new Date(toDate)) - Number(new Date(fromDate))) > 0 &&
             (Number(new Date(fromDate)) >= Number(new Date)) &&
-            (Number(new Date(toDate)) >= Number(new Date))
+            (Number(new Date(toDate)) > Number(new Date))
         ) {
             await addVacation({
                 destination,
@@ -53,17 +54,28 @@ export function AddVacation() {
             setImageSrc("");
             alert("New vacation added")
         } else {
-
-            alert("Enter whole the data in a proper way, please!")
+            const isimageSrcValid = checkURL(imageSrc);
+            if(!destination && !about && !fromDate && !toDate && !price && !imageSrc  ) {
+                alert(`Nothing entered`)
+            
+            } else if (!destination || !about || !fromDate || !toDate || !price || !imageSrc  ){alert(`Some data not entered`)
+        }else  if (isimageSrcValid ==false) {alert("Unproper image URL format entered")
+              } else if (typeof destination != "string"){alert("destination should be a string")
+               } else if (typeof about != "string"){alert("about should be a string")
+               } else if ((Number(new Date(toDate)) - Number(new Date(fromDate))) < 0){alert("The ending date shouldn't be the date BEFORE the begining data")
+               } else if ((Number(new Date(fromDate)) < Number(new Date))){alert("The beginning date shouldn't be the PASSED one!")
+               } else if ((Number(new Date(toDate)) <= Number(new Date))){alert("The ending date shouldn't be the PASSED one!")
+               } else if (price>10000) {alert("price should up to 10,000") 
+               } else if (price<1000) {alert("price shouldn't be below 1,000")}  
+               else return    
         }
-
     }
     return (
         <>
        <Header />
        <div className="registration">
  <h2>Add Vacation</h2>
-            {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
+ {isError && status && <p className='errorP'>Vacation adding status: { JSON.stringify(status)}</p>}
             {isLoading && <p className='loadingP'>Loading...</p> ||
             <div className="wrapper">
                   <form action="#">
@@ -92,7 +104,7 @@ export function AddVacation() {
                   setToDate("");
                   setPrice("");
                   setImageSrc("");
-             
+                  navigate("/vacations/editAll")
             }}>Cancel</button>
             </div>
             </div>
@@ -106,4 +118,11 @@ export function AddVacation() {
        </>
     )
 }
-
+function checkURL(url:string) {
+    const r = /^(ftp|http|https):\/\/[^ "]+$/;
+    
+  if (r.test(url) && url.match(/\.(jpeg|jpg|gif|png)$/)) {
+    return true
+  }else{
+    return false} 
+  }

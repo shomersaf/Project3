@@ -290,6 +290,7 @@ button:hover {
   color: crimson;
   font-weight: bold;
   font-family: "IBM Plex Sans Hebrew", sans-serif;
+  text-align: center;
 }
 
 .actionsDiv {

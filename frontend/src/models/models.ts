@@ -61,3 +61,16 @@ export interface IRoute {
     data: number[];
   }
   
+  export interface IError {
+    status: number;
+    data: IErrorData;
+  }
+  
+ interface IErrorData {
+    status: string;
+    message: IErrorMessage;
+  }
+  
+interface IErrorMessage {
+  }
+  

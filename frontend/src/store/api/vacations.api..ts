@@ -1,6 +1,6 @@
 
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { IVacation, IUser, ILogin} from '../../models/models'
+import { IVacation, IUser, ILogin, IError} from '../../models/models'
 
 export const vacationsApi = createApi({
     reducerPath: 'vacationsApi',
@@ -11,11 +11,6 @@ export const vacationsApi = createApi({
     refetchOnFocus:true,
     refetchOnMountOrArgChange:true,
     endpoints: build =>({
-        // getVacations: build.query<IVacation[], string>({
-        //     query:(limit='all')=>
-        //         `vacations?${`_limit=${limit}`}`,   
-        //         providesTags: ['IVacation[]'],       
-        // }),
         getVacations: build.query<IVacation[], string>({
           query:(stepFrom='all')=>
               `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,   
@@ -39,6 +34,7 @@ export const vacationsApi = createApi({
               headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               },
+              transformResponse: (response: {data: unknown,error:IError} ) => response.data,
             }),
           }),
 
@@ -50,7 +46,8 @@ export const vacationsApi = createApi({
               headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               },
-              transformResponse: (response: { data: unknown } ) => response.data,
+            
+              transformResponse: (response: {data: unknown,error:IError} ) => response.data,
             }),
           }),
 
@@ -62,6 +59,7 @@ export const vacationsApi = createApi({
               headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               },
+              transformResponse: (response: {data: unknown,status:unknown} ) => response.data,
             }),
     
             // invalidatesTags: ['IVacation[]'],
