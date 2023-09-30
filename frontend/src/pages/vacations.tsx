@@ -5,11 +5,15 @@ import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
 
 export function Vacations() {
-  const [count, setCount] = useState("0")
+  const [position, setPosition] = useState("0")
   const [page, setPage] = useState(1)
   const step: number = 10;
-  const { isLoading, isError, data } = useGetVacationsQuery(count)
-  const vacationsNum: number | undefined = data?.length
+  const { isLoading, isError, data } = useGetVacationsQuery(position)
+  const dataLength: number | undefined = data?.length
+  if(dataLength == 0 && page > 0){
+    setPosition(((+position) - step).toString())
+    setPage(page - 1);
+  }
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -30,10 +34,10 @@ export function Vacations() {
           <div className="wrapper">
 
             <div className="pagination">
-              <button onClick={() => { prevPage(count, page, vacationsNum, step) }}>prev</button>
+              <button onClick={() => { prevPage(position, page, dataLength, step) }}>prev</button>
               <div className="pageNum">{page !== 0 ? page : "all"}</div>
               {/* <button onClick={() => { setCount("all"); setPage(0); }}>all</button> */}
-              <button onClick={() => { nextPage(count, page, vacationsNum, step) }}>next</button>
+              <button onClick={() => { nextPage(position, page, dataLength, step) }}>next</button>
             </div>
 
             <div className="cards">
@@ -69,25 +73,25 @@ export function Vacations() {
     </>
   )
 
-  function nextPage(count: string, page: number, vacationsNum: number | undefined, step: number) {
-    if (count == "all" || vacationsNum && Number(count) <=vacationsNum+page) {
+  function nextPage(position: string, page: number, dataLength: number | undefined, step: number) {
+    if (position == "all" || dataLength && dataLength >= step) {
       if (page == 0) {
-        setCount("0");
+        setPosition("0");
         setPage(page + 1);
       } else {
-        setCount(((+count) + step).toString())
+        setPosition(((+position) + step).toString())
         setPage(page + 1);
       }
     }
   }
 
-  function prevPage(count: string, page: number, vacationsNum: number | undefined, step: number) {
-    if (vacationsNum && count == "all" || vacationsNum && Number(count) > 0) {
+  function prevPage(position: string, page: number, dataLength: number | undefined, step: number) {
+    if (dataLength && position == "all" || dataLength && Number(position) > 0) {
       if (page == 0) {
-        setCount("all");
+        setPosition("all");
 
       } else {
-        setCount(((+count) - step).toString())
+        setPosition(((+position) - step).toString())
         setPage(page - 1);
       }
     }
