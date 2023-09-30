@@ -197,7 +197,7 @@ The Arctic is a vast area located around the North Pole and includes parts of va
  '2025-06-27', 
  '2025-07-19', 
  '6560', 
- 'https://avidcruiser.com/wp-content/uploads/2017/10/Hapag-Lloyd-1320x946.jpg');
+ 'https://elitetraveler.com/wp-content/uploads/sites/8/2020/05/Screenshot-2020-05-13-at-08.52.58.png');
 
    INSERT INTO `project3`.`vacations` (`destination`, `about`, `fromDate`, `toDate`, `price`, `imageSrc`) 
 VALUES ('Zanzibar, Tanzania', 
