@@ -2,7 +2,7 @@
 import express, { Request, Response, NextFunction } from "express"
 import { postUserHandler } from "./handlers/postUserHandler";
 import { postLoginHandler } from "./handlers/postLoginHandler";
-
+var createError = require('http-errors')
 const usersRouter = express.Router();
 
 usersRouter.post("/new",postUser)
@@ -17,9 +17,9 @@ async function loginUser(req:Request,res:Response,next:NextFunction){
       if(result)console.log('user logged in')
     res.json(result)
   } catch (error) {
-    res.status(400).send({
-      message: error
-  });
+    res.status(400).send(
+     'Unautorized'
+  );
     return next(error);
   }
 }
@@ -41,9 +41,7 @@ async function postUser(req: Request, res: Response, next: NextFunction) {
       if(result)console.log('user added')
       res.status(200).json(result)
   } catch (error) {
-    res.status(400).send({
-      message: error
-  });
+    res.status(400).send(error);
     return next(error);
   }
 }
