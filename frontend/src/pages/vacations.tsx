@@ -70,7 +70,7 @@ export function Vacations() {
   )
 
   function nextPage(count: string, page: number, vacationsNum: number | undefined, step: number) {
-    if (count == "all" || vacationsNum && Number(count) <=vacationsNum/step +(step*2-2)) {
+    if (count == "all" || vacationsNum && Number(count) <=vacationsNum+page) {
       if (page == 0) {
         setCount("0");
         setPage(page + 1);
