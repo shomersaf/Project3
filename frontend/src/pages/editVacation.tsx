@@ -16,6 +16,7 @@ export function EditVacation() {
     const [destination, setDestination] = useState("");
     const [about, setAbout] = useState("");
     const [FirstRun, setFirstRun] = useState(true);
+    const isimageSrcValid = checkURL(imageSrc);
     currentVacation?.map(vacation => {
         if (FirstRun){
             setDestination(vacation.destination)
@@ -27,9 +28,10 @@ export function EditVacation() {
     })
     
  
-    const [putVacation, { isSuccess, isLoading, isError }] = usePutVacationMutation()
+    const [putVacation, { isSuccess, isLoading, isError}] = usePutVacationMutation()
 
-    const putVacationHandler = async (destination: string,
+    const putVacationHandler = async (
+        destination: string,
         about: string,
         fromDate: string,
         toDate: string,
@@ -38,8 +40,12 @@ export function EditVacation() {
         vcnId: number
     ) => {
         if (
+            destination &&
+            about &&
+            imageSrc &&
+            isimageSrcValid &&
             price <= 10000 &&
-            price > 1 &&
+            price > 1000 &&
             (Number(new Date(toDate)) - Number(new Date(fromDate))) > 0 &&
             (Number(new Date(fromDate)) >= Number(new Date)) &&
             (Number(new Date(toDate)) >= Number(new Date))
@@ -60,8 +66,21 @@ export function EditVacation() {
             setPrice("");
             setImageSrc("");
             alert(`Vacation #:${vcnId} successfully edited`)
-        } else {
-            alert("Enter all the relevant data in proper way, please!")
+        }  else  {
+           
+            
+            if (!destination){ alert(`Destination data not entered`)
+            }else if (!about){ alert(`About data not entered`)
+            }else  if (isimageSrcValid ==false) {alert("Unproper image URL format entered")
+              } else if (typeof destination != "string"){alert("destination should be a string")
+               } else if (typeof about != "string"){alert("about should be a string")
+               } else if ((Number(new Date(toDate)) - Number(new Date(fromDate))) < 0){alert("The ending date shouldn't be the date BEFORE the begining date")
+               } else if ((Number(new Date(fromDate)) < Number(new Date))){alert("The beginning date shouldn't be the PASSED one!")
+               } else if ((Number(new Date(toDate)) <= Number(new Date))){alert("The ending date shouldn't be the PASSED one!")
+               } else if (price>10000) {alert("price should up to 10,000") 
+               } else if (price<1000) {alert("price shouldn't be below 1,000") 
+            } else return
+        
         }
 
     }
@@ -71,7 +90,7 @@ export function EditVacation() {
        <Header />
         <div className="registration">
             <h2>Edit Vacation #{vcnId}</h2>
-            {isError && <p className='errorP'>Something went wrong. Try again, please!</p>}
+            {isError && <p className='errorP'>Something went wrong</p>}
             {isLoading && <p className='loadingP'>Loading...</p> ||
                 <div className="wrapper">
                     {currentVacation?.map(vacation => (
@@ -151,3 +170,11 @@ export function EditVacation() {
        </>
     )
 }
+function checkURL(url:string) {
+    const r = /^(ftp|http|https):\/\/[^ "]+$/;
+    
+  if (r.test(url) && url.match(/\.(jpeg|jpg|gif|png)$/)) {
+    return true
+  }else{
+    return false} 
+  }

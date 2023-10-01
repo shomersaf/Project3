@@ -34,7 +34,7 @@ export const vacationsApi = createApi({
               headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               },
-              transformResponse: (response: {data: unknown,error:IError} ) => response.data,
+              transformResponse: (response: {data: unknown,status:unknown} ) => response.data,
             }),
           }),
 
@@ -73,6 +73,7 @@ export const vacationsApi = createApi({
               headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               },
+              transformResponse: (response: {data: unknown,status:unknown} ) => response.data,
             }),
 
             // invalidatesTags: ['IVacation[]'],

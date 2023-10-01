@@ -32,7 +32,7 @@ export function AddVacation() {
             fromDate &&
             toDate &&
             price <= 10000 &&
-            price > 1 &&
+            price > 1000 &&
             imageSrc &&
             (Number(new Date(toDate)) - Number(new Date(fromDate))) > 0 &&
             (Number(new Date(fromDate)) >= Number(new Date)) &&
@@ -62,7 +62,7 @@ export function AddVacation() {
         }else  if (isimageSrcValid ==false) {alert("Unproper image URL format entered")
               } else if (typeof destination != "string"){alert("destination should be a string")
                } else if (typeof about != "string"){alert("about should be a string")
-               } else if ((Number(new Date(toDate)) - Number(new Date(fromDate))) < 0){alert("The ending date shouldn't be the date BEFORE the begining data")
+               } else if ((Number(new Date(toDate)) - Number(new Date(fromDate))) < 0){alert("The ending date shouldn't be the date BEFORE the begining date")
                } else if ((Number(new Date(fromDate)) < Number(new Date))){alert("The beginning date shouldn't be the PASSED one!")
                } else if ((Number(new Date(toDate)) <= Number(new Date))){alert("The ending date shouldn't be the PASSED one!")
                } else if (price>10000) {alert("price should up to 10,000") 

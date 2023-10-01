@@ -43,9 +43,7 @@ async function putVacation(req: Request, res: Response, next: NextFunction) {
     // console.log(result);
     res.status(200).json(result);
   } catch (error) {
-    res.status(400).send({
-      message: error
-  });
+    res.status(400).send(error);
     return next(error);
   }
 }
@@ -63,9 +61,7 @@ async function postVacation(req: Request, res: Response, next: NextFunction) {
       if(result) console.log('vacation added')
       res.status(200).json(result)
   } catch (error) {
-    res.status(400).send({
-      message: error
-  });
+    res.status(400).send(error);
     return next(error);
   }
 }
