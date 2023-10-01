@@ -213,7 +213,7 @@ it("PUT vacation - Wrong image source - irrelevant beginning", async function ()
 
 describe("GET /VACATIONS", function () {
   it("Get Vacations - followers per vacations ", async function () {
-      const result = await axios.get(`http://localhost:4001/vacations?_limit=all`)
+      const result = await axios.get(`http://localhost:4001/vacations?_stepFrom=all`)
     const { data } = result;
     //console.log(data)
       expect(result.status).equal(200)
