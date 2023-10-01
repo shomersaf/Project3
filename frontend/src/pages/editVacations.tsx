@@ -28,10 +28,10 @@ export function EditVacations (){
            <div className="wrapper">
    
    <h2 className="headline">Edit Vacations</h2>
-  
+   {isError && <p className="errorP">Something went wrong...</p>}
    {isLoading && <p className="loadingP">Loading...</p> ||
    <div className = "cards">
-   {isError && <p className="errorP">Something went wrong...</p>}
+   
        {data?.map(vacation => (
            <div key={vacation.destination+vacation.fromDate} className="card">
                <img src={vacation.imageSrc} alt ={vacation.destination} />
