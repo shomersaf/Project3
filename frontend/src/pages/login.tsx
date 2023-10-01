@@ -67,8 +67,8 @@ export function Login() {
                 {isLoading && <p className='loadingP'>Loading...</p> ||
                     <div className="loginDiv">
                         <form action="#">
-                            <input type="email" placeholder="email..." value={email} onChange={(e) => { setEmail(e.target.value) }} />
-                            <input type="password" placeholder="password..." value={pswrd} onChange={(e) => { setPswrd(e.target.value) }} />
+                            <input type="email" id = "email" placeholder="email..." value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                            <input type="password" id="pswrd" placeholder="password..." value={pswrd} onChange={(e) => { setPswrd(e.target.value) }} />
                         </form>
                         <div className="buttons">
                             <button onClick={() => { loginUserHandler(email, pswrd) }}>Login</button>

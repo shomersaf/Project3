@@ -15,7 +15,7 @@ async function postLoginHandler(email:string,
         const isPasswordValid = bcrypt.compareSync(pswrd,checkup[0]?.pswrd)
         const userRole = checkup[0]?.userRole
         if(!isPasswordValid) { throw new Error ('The password entered is not valid')} else{
-            const signedToken = jsonwebtoken.sign({ userName: email, role: userRole }, process.env.SECRET as string, { expiresIn: '60m' })
+            const signedToken = jsonwebtoken.sign({ userName: email, role: userRole }, process.env.SECRET as string, { expiresIn: '7d' })
             console.log(signedToken)
         return {result, signedToken, userRole}}
         }

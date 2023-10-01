@@ -81,11 +81,11 @@ export function AddVacation() {
                   <form action="#">
                 <input type="text" placeholder="destination..." value={destination} onChange={(e) => { setDestination(e.target.value) }} />
               
-                <textarea placeholder="about..." value={about} onChange={(e) => { setAbout(e.target.value) }}></textarea>
-                <input type="date" placeholder="fromDate..." value={fromDate} onChange={(e) => { setfromDate(e.target.value) }} />
-                <input type="date" placeholder="toDate... " value={toDate} onChange={(e) => { setToDate(e.target.value) }} />
-                <input type="number" placeholder="price (up to 10,000)... " value={price} onChange={(e) => { setPrice(e.target.value) }} />
-                <input type="text" placeholder="imageSrc (should have proper format ending!) " value={imageSrc} onChange={(e) => { setImageSrc(e.target.value) }} />
+                <textarea placeholder="about..." id = "about" value={about} onChange={(e) => { setAbout(e.target.value) }}></textarea>
+                <input type="date" id="fromDate" placeholder="fromDate..." value={fromDate} onChange={(e) => { setfromDate(e.target.value) }} />
+                <input type="date" id="toDate" placeholder="toDate... " value={toDate} onChange={(e) => { setToDate(e.target.value) }} />
+                <input type="number"  id = "price" placeholder="price (up to 10,000)... " value={price} onChange={(e) => { setPrice(e.target.value) }} />
+                <input type="text" id = "imageSrc" placeholder="imageSrc (should have proper format ending!) " value={imageSrc} onChange={(e) => { setImageSrc(e.target.value) }} />
             </form>
             <div className="buttons">
             <button onClick={() => {

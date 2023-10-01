@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useGetVacationsQuery } from "../store/api/vacations.api."
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
+import { useAuth } from "../store/hooks/use-auth";
+
+
 
 export function Vacations() {
   const [position, setPosition] = useState("0")
@@ -21,6 +24,8 @@ export function Vacations() {
     // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
+  const {email} = useAuth()
+  console.log("user email: ", email)
 
   return (
     <>
@@ -36,7 +41,7 @@ export function Vacations() {
             <div className="pagination">
               <button onClick={() => { prevPage(position, page, dataLength, step) }}>prev</button>
               <div className="pageNum">{page !== 0 ? page : "all"}</div>
-              {/* <button onClick={() => { setCount("all"); setPage(0); }}>all</button> */}
+             
               <button onClick={() => { nextPage(position, page, dataLength, step) }}>next</button>
             </div>
 

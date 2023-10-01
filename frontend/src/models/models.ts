@@ -20,6 +20,11 @@ export interface IRoute {
     iat: number;
     exp: number;
   }
+
+  export interface IFollow {
+    email: string;
+    vcnId: string;
+  }
   export interface IUser {
     firstName:string,
     lastName:string,

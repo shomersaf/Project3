@@ -14,10 +14,23 @@ followingRouter.delete("/delete",deleteFollowing)
 
 
 
+// async function deleteFollowing(req: Request, res: Response, next: NextFunction) {
+//   try {
+//     const {userId, vcnId } = req.body;
+//     const result = await deleteFollowingHandler(userId, vcnId);
+//       if(result)console.log('unfollowed')
+//     res.status(200).json(result)
+//   } catch (error) {
+//     res.status(500).send({
+//       message: error
+//   });
+//     return next(error);
+//   }
+// }
 async function deleteFollowing(req: Request, res: Response, next: NextFunction) {
   try {
-    const {userId, vcnId } = req.body;
-    const result = await deleteFollowingHandler(userId, vcnId);
+    const {email, vcnId } = req.body;
+    const result = await deleteFollowingHandler(email, vcnId);
       if(result)console.log('unfollowed')
     res.status(200).json(result)
   } catch (error) {
@@ -30,10 +43,25 @@ async function deleteFollowing(req: Request, res: Response, next: NextFunction) 
 
 
 
+
+// async function postFollowing(req: Request, res: Response, next: NextFunction) {
+//   try {
+//     const { userId, vcnId } = req.body;
+//     const result = await postFollowingHandler( userId, vcnId );
+//       if(result)console.log('following added')
+//     res.json(result)
+//   } catch (error) {
+//     res.status(500).send({
+//       message: error
+//   });
+//     return next(error);
+//   }
+// }
+
 async function postFollowing(req: Request, res: Response, next: NextFunction) {
   try {
-    const { userId, vcnId } = req.body;
-    const result = await postFollowingHandler( userId, vcnId );
+    const { email, vcnId } = req.body;
+    const result = await postFollowingHandler( email, vcnId );
       if(result)console.log('following added')
     res.json(result)
   } catch (error) {

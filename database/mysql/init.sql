@@ -489,7 +489,7 @@ INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userR
 INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('admin', 'admin', 'admin@co.il', '$2a$05$zuQbCdGePSo9q/ID3xVu9uV0goz.HgiLGew4/O8lRiPgkGrLw3K1G', 'admin');
 
 
-INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '5');
+
 INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '6');
 INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('5', '7');
 INSERT INTO `project3`.`following` (`fUserId`, `fVacationId`) VALUES ('6', '8');
