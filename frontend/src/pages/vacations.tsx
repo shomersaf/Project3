@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useAddFollowingMutation, useDeleteFollowingMutation, useGetFollowingsByUserMutation, useGetVacationsQuery, useRefreshVacationsMutation } from "../store/api/vacations.api."
+import { useAddFollowingMutation, useDeleteFollowingMutation, useGetFollowingsByUserMutation, useGetVacationsQuery } from "../store/api/vacations.api."
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
 import { useAuth } from "../store/hooks/use-auth";
@@ -10,7 +10,7 @@ import { useAuth } from "../store/hooks/use-auth";
 export function Vacations() {
   const [position, setPosition] = useState("0")
   const [page, setPage] = useState(1)
-  const [refresh, setRefresh] = useState<boolean>(false)
+ const [refresh, setRefresh] =useState(false)
   const [vacationsList, setVacationsList] =useState<number[]>()
   const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(position)
@@ -18,7 +18,7 @@ export function Vacations() {
   const [getFollowingsByUser] = useGetFollowingsByUserMutation()
   const [addFollowing] = useAddFollowingMutation()
   const [deleteFollowing] = useDeleteFollowingMutation()
-  const [refreshVacations] = useRefreshVacationsMutation()
+  // const [refreshVacations] = useRefreshVacationsMutation()
   const dataLength: number | undefined = data?.length
   if(dataLength == 0 && page > 0){
     setPosition(((+position) - step).toString())
@@ -32,19 +32,21 @@ export function Vacations() {
     maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
  
-  const getFollowingsByUserHandler = async (email:string )=>{
-    const result =  await getFollowingsByUser(email)
-const resList = Object(result).data
-const vax = resList.map((v: { fVacationId: number; })=>v.fVacationId)
-   setVacationsList(vax)
+  const getFollowingsByUserHandler = async (email: string) => {
+    const result = await getFollowingsByUser(email)
+    const resList = Object(result).data
+    const vax = resList.map((v: { fVacationId: number; }) => v.fVacationId)
+    setVacationsList(vax)
   }
 
  const addFollowingHandler= async (email:string, vcnId:number) =>{
   await addFollowing({email, vcnId})
+  setRefresh(true)
  }
 
  const deleteFollowingHandler= async (email:string, vcnId:number) =>{
   await deleteFollowing({email, vcnId})
+  setRefresh(false)
  }
 
 // const refreshVacationsHandler = async(position:string) =>{
@@ -56,10 +58,10 @@ const vax = resList.map((v: { fVacationId: number; })=>v.fVacationId)
 
   useEffect(()=>{
   getFollowingsByUserHandler(email)
-  //refreshVacationsHandler(position)
+ 
      // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
-//vacationsList,setVacationsListr
+  },[refresh])
+
   console.log("vacationsList: ",vacationsList)
 
   return (
@@ -100,13 +102,13 @@ const vax = resList.map((v: { fVacationId: number; })=>v.fVacationId)
                         <div className="likeDiv">
                        {vacationsList && vacationsList.find((v)=>v == Number(vacation.vcnId))? 
                        <div>
-                        <span className="like" title="follow">&#10084;</span>
-                        <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
+                        <span className="like" title="follow" onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }} >&#10084;</span>
+                        {/* <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button> */}
                        </div> 
                        :
                        <div>
-                        <span className="dislike" title="unfollow">&#10084;</span>
-                        <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
+                        <span className="dislike" title="unfollow" onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }} >&#10084;</span>
+                        {/* <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button> */}
                        </div>
                        }
                           <span className="likes">{vacation.followers}</span>
