@@ -16,6 +16,13 @@ export const vacationsApi = createApi({
       providesTags: ["IVacation[]"],
     }),
 
+
+    refreshVacations: build.mutation<IVacation[], string>({
+      query: (stepFrom = "all") =>
+        `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,
+  
+    }),
+
     getFollowingsByUser: build.mutation<IFollow[], string>({
       query: (email) =>
         `following/by_user/${email}`,
@@ -139,5 +146,6 @@ export const {
   useAddFollowingMutation,
   useDeleteFollowingMutation,
   useGetFollowingsByUserMutation,
-  useGetFollowingsByVacationQuery
+  useGetFollowingsByVacationQuery,
+  useRefreshVacationsMutation
 } = vacationsApi;
