@@ -11,6 +11,7 @@ export function Vacations() {
   const [position, setPosition] = useState("0")
   const [page, setPage] = useState(1)
  const [refresh, setRefresh] =useState(false)
+
   const [vacationsList, setVacationsList] =useState<number[]>()
   const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(position)
@@ -40,13 +41,15 @@ export function Vacations() {
   }
 
  const addFollowingHandler= async (email:string, vcnId:number) =>{
+  setRefresh(false)
   await addFollowing({email, vcnId})
   setRefresh(true)
  }
 
  const deleteFollowingHandler= async (email:string, vcnId:number) =>{
-  await deleteFollowing({email, vcnId})
   setRefresh(false)
+  await deleteFollowing({email, vcnId})
+  setRefresh(true)
  }
 
 // const refreshVacationsHandler = async(position:string) =>{
