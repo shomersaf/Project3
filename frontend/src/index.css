@@ -120,12 +120,12 @@ form img {
   margin: auto;
   justify-content: space-evenly;
 }
-.like {
+.dislike {
   color: rgb(222, 189, 196);
   font-size: 28px;
   cursor: pointer;
 }
-.dislike {
+.like {
   color: rgb(194, 54, 84);
   font-size: 28px;
   cursor: pointer;

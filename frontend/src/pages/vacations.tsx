@@ -1,6 +1,6 @@
 
-import { useState } from "react";
-import { useGetVacationsQuery } from "../store/api/vacations.api."
+import { useEffect, useState } from "react";
+import { useGetFollowingsByUserMutation, useGetVacationsQuery } from "../store/api/vacations.api."
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
 import { useAuth } from "../store/hooks/use-auth";
@@ -10,8 +10,11 @@ import { useAuth } from "../store/hooks/use-auth";
 export function Vacations() {
   const [position, setPosition] = useState("0")
   const [page, setPage] = useState(1)
+  const [vacationsList, setVacationsList] =useState<number[]>()
   const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(position)
+  const {email} = useAuth()
+  const [getFollowingsByUser,{isSuccess}] = useGetFollowingsByUserMutation()
   const dataLength: number | undefined = data?.length
   if(dataLength == 0 && page > 0){
     setPosition(((+position) - step).toString())
@@ -24,8 +27,20 @@ export function Vacations() {
     // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
-  const {email} = useAuth()
-  console.log("user email: ", email)
+ 
+  const getFollowingsByUserHandler = async (email:string )=>{
+    const result =  await getFollowingsByUser(email)
+const resList = Object(result).data
+const udav = resList.map((v: { fVacationId: number; })=>v.fVacationId)
+   setVacationsList(udav)
+    
+  }
+
+  useEffect(()=>{
+  getFollowingsByUserHandler(email)
+  },[])
+
+  console.log("user email: ", email, "vacationsList: ",vacationsList, Array.isArray(vacationsList) )
 
   return (
     <>
@@ -62,7 +77,8 @@ export function Vacations() {
                       <div className="cardFooter">
                         <div className="price">{formatter.format(vacation.price)}</div>
                         <div className="likeDiv">
-                          <span className="like" title="follow">&#10084;</span>
+                       {vacationsList && vacationsList.find((v)=>v == Number(vacation.vcnId))?  <span className="like" title="follow">&#10084;</span> :
+                       <span className="dislike" title="unfollow">&#10084;</span>}
                           <span className="likes">{vacation.followers}</span>
                         </div>
                       </div>
