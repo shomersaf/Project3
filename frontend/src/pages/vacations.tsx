@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useAddFollowingMutation, useDeleteFollowingMutation, useGetFollowingsByUserMutation, useGetVacationsQuery } from "../store/api/vacations.api."
+import { useAddFollowingMutation, useDeleteFollowingMutation, useGetFollowingsByUserMutation, useGetVacationsQuery, useRefreshVacationsMutation } from "../store/api/vacations.api."
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
 import { useAuth } from "../store/hooks/use-auth";
@@ -10,7 +10,7 @@ import { useAuth } from "../store/hooks/use-auth";
 export function Vacations() {
   const [position, setPosition] = useState("0")
   const [page, setPage] = useState(1)
-
+  const [refresh, setRefresh] = useState<boolean>(false)
   const [vacationsList, setVacationsList] =useState<number[]>()
   const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(position)
@@ -18,6 +18,7 @@ export function Vacations() {
   const [getFollowingsByUser] = useGetFollowingsByUserMutation()
   const [addFollowing] = useAddFollowingMutation()
   const [deleteFollowing] = useDeleteFollowingMutation()
+  const [refreshVacations] = useRefreshVacationsMutation()
   const dataLength: number | undefined = data?.length
   if(dataLength == 0 && page > 0){
     setPosition(((+position) - step).toString())
@@ -46,13 +47,19 @@ const vax = resList.map((v: { fVacationId: number; })=>v.fVacationId)
   await deleteFollowing({email, vcnId})
  }
 
+// const refreshVacationsHandler = async(position:string) =>{
+//   await refreshVacations(position)
+  
+// }
+
 
 
   useEffect(()=>{
   getFollowingsByUserHandler(email)
+  //refreshVacationsHandler(position)
      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
+//vacationsList,setVacationsListr
   console.log("vacationsList: ",vacationsList)
 
   return (
@@ -93,13 +100,13 @@ const vax = resList.map((v: { fVacationId: number; })=>v.fVacationId)
                         <div className="likeDiv">
                        {vacationsList && vacationsList.find((v)=>v == Number(vacation.vcnId))? 
                        <div>
-                        <span className="like" title="follow">&#10084;</span> 
-                        <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId)}}>unfollow</button>
+                        <span className="like" title="follow">&#10084;</span>
+                        <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
                        </div> 
                        :
                        <div>
                         <span className="dislike" title="unfollow">&#10084;</span>
-                        <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId)}}>follow</button>
+                        <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
                        </div>
                        }
                           <span className="likes">{vacation.followers}</span>
