@@ -14,7 +14,7 @@ export function Vacations() {
   const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(position)
   const {email} = useAuth()
-  const [getFollowingsByUser,{isSuccess}] = useGetFollowingsByUserMutation()
+  const [getFollowingsByUser] = useGetFollowingsByUserMutation()
   const dataLength: number | undefined = data?.length
   if(dataLength == 0 && page > 0){
     setPosition(((+position) - step).toString())
@@ -38,9 +38,10 @@ const udav = resList.map((v: { fVacationId: number; })=>v.fVacationId)
 
   useEffect(()=>{
   getFollowingsByUserHandler(email)
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-  console.log("user email: ", email, "vacationsList: ",vacationsList, Array.isArray(vacationsList) )
+  console.log("vacationsList: ",vacationsList)
 
   return (
     <>
