@@ -7,26 +7,11 @@ import {deleteFollowingHandler } from "./handlers/deleteFollowingHandler";
 
 const followingRouter = express.Router();
 
-followingRouter.get("/by_user/:userId",getFollowingByUser)
+followingRouter.get("/by_user/:email",getFollowingByUser)
 followingRouter.get("/by_vacation/:vcnId",getFollowingByVacation)
 followingRouter.post("/new",postFollowing)
 followingRouter.delete("/delete",deleteFollowing)
 
-
-
-// async function deleteFollowing(req: Request, res: Response, next: NextFunction) {
-//   try {
-//     const {userId, vcnId } = req.body;
-//     const result = await deleteFollowingHandler(userId, vcnId);
-//       if(result)console.log('unfollowed')
-//     res.status(200).json(result)
-//   } catch (error) {
-//     res.status(500).send({
-//       message: error
-//   });
-//     return next(error);
-//   }
-// }
 async function deleteFollowing(req: Request, res: Response, next: NextFunction) {
   try {
     const {email, vcnId } = req.body;
@@ -41,22 +26,6 @@ async function deleteFollowing(req: Request, res: Response, next: NextFunction) 
   }
 }
 
-
-
-
-// async function postFollowing(req: Request, res: Response, next: NextFunction) {
-//   try {
-//     const { userId, vcnId } = req.body;
-//     const result = await postFollowingHandler( userId, vcnId );
-//       if(result)console.log('following added')
-//     res.json(result)
-//   } catch (error) {
-//     res.status(500).send({
-//       message: error
-//   });
-//     return next(error);
-//   }
-// }
 
 async function postFollowing(req: Request, res: Response, next: NextFunction) {
   try {
@@ -85,9 +54,9 @@ async function getFollowingByVacation(req: Request, res: Response, next: NextFun
 
 async function getFollowingByUser(req: Request, res: Response, next: NextFunction) {
   try {
-    const { userId } = req.params;
-    console.log(userId);
-    const result = await getFollowingsByUserHandler(+userId);
+    const { email } = req.params;
+    console.log(email);
+    const result = await getFollowingsByUserHandler(email);
 
     res.status(200).json(result);
   } catch (error) {

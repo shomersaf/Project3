@@ -1,7 +1,7 @@
 const { expect } = require("chai")
 const axios = require("axios")
 const email ='one@co.il';
-const userId = 5;
+// const userId = 5;
 const vcnId = 5 | 6 |7|8|9|10|11|12|13|17;
 const dummyFollowing = {
   // "userId":userId, 
@@ -22,23 +22,12 @@ describe("POST /following/new", function(){
 })
 
 
-// describe("POST /following/new", function(){
-//   it("Follow vacation - Success ", async function () {
-//     const result = await axios.post("http://localhost:4001/following/new", dummyFollowing)
-//     const { data } = result;
-//     //console.log(data)
-//       expect(result.status).equal(200)
-//       expect(typeof result.data).equal("object")
-//        const isFillowingArray = Array.isArray(result.data);
-//        expect(isFillowingArray).equal(true)
-// });
-// })
 
 
 
-describe("GET /following/by_user/:userId", function () {
+describe("GET /following/by_user/:email", function () {
   it("Get Following By User ", async function () {
-      const result = await axios.get(`http://localhost:4001/following/by_user/${userId}`)
+      const result = await axios.get(`http://localhost:4001/following/by_user/${email}`)
     const { data } = result;
     //console.log(data)
       expect(result.status).equal(200)

@@ -23,7 +23,7 @@ export interface IRoute {
 
   export interface IFollow {
     email: string;
-    vcnId: string;
+    vcnId: number;
   }
   export interface IUser {
     firstName:string,

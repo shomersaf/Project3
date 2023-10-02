@@ -125,6 +125,11 @@ form img {
   font-size: 28px;
   cursor: pointer;
 }
+.dislike {
+  color: rgb(194, 54, 84);
+  font-size: 28px;
+  cursor: pointer;
+}
 .likeDiv {
   display: flex;
   background-color: white;

@@ -3,7 +3,7 @@ import { IVacation, IFollow, IUser, ILogin, IError } from "../../models/models";
 
 export const vacationsApi = createApi({
   reducerPath: "vacationsApi",
-  tagTypes: ["IVacation[]"],
+  tagTypes: ["IVacation[]", "IFollow[]"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4001/",
   }),
@@ -16,10 +16,16 @@ export const vacationsApi = createApi({
       providesTags: ["IVacation[]"],
     }),
 
-    getFollowingsByUser: build.query<IFollow[], string>({
-      query: (stepFrom = "all") =>
-        `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,
-      providesTags: ["IVacation[]"],
+    getFollowingsByUser: build.mutation<IFollow[], string>({
+      query: (email) =>
+        `following/by_user/${email}`,
+  
+    }),
+
+    getFollowingsByVacation: build.query<IFollow[], string>({
+      query: (vcnId) =>
+        `following:${vcnId}`,
+      providesTags: ["IFollow[]"],
     }),
 
     editVacations: build.query<IVacation[], string>({
@@ -108,12 +114,16 @@ export const vacationsApi = createApi({
     }),
 
 
-  deleteFollowing: build.mutation<IFollow[], string>({
-    query: (vcnId) => ({
-      url: `following/delete/${vcnId}`,
+  deleteFollowing: build.mutation<IFollow[], object>({
+    query: (payload) => ({
+      url: `following/delete`,
       method: "DELETE",
+      body: payload,
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
     }),
-    // invalidatesTags: ["IFollowing[]"],
+    // invalidatesTags: ["IFollow[]"],
   }),
 }),
 })
@@ -126,5 +136,8 @@ export const {
   usePutVacationMutation,
   useLoginUserMutation,
   useEditVacationsQuery,
-  useAddFollowingMutation
+  useAddFollowingMutation,
+  useDeleteFollowingMutation,
+  useGetFollowingsByUserMutation,
+  useGetFollowingsByVacationQuery
 } = vacationsApi;
