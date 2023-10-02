@@ -102,16 +102,22 @@ export function Vacations() {
                         <div className="likeDiv">
                        {vacationsList && vacationsList.find((v)=>v == Number(vacation.vcnId))? 
                        <div>
-                        <span className="like" title="follow" onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }} >&#10084;</span>
-                        {/* <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button> */}
+                        <div>
+                        <span className="like" title="unfollow" >&#10084;</span>
+                        <span className="likes">{vacation.followers}</span>
+                        </div>
+                        <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
                        </div> 
                        :
                        <div>
-                        <span className="dislike" title="unfollow" onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }} >&#10084;</span>
-                        {/* <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button> */}
+                        <div>
+                        <span className="dislike" title="follow" >&#10084;</span>
+                        <span className="likes">{vacation.followers}</span>
+                        </div>
+                        <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
                        </div>
                        }
-                          <span className="likes">{vacation.followers}</span>
+                         
                         </div>
                       </div>
                     </div>
