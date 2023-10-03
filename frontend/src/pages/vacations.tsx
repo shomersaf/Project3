@@ -10,8 +10,10 @@ import { useAuth } from "../store/hooks/use-auth";
 export function Vacations() {
   const [position, setPosition] = useState("0")
   const [page, setPage] = useState(1)
- const [refresh, setRefresh] =useState(false)
+ const [clicked, setClicked] =useState(false)
+ const [like, setLike] =useState(false)
 
+ const [reloaded, setReloaded] =useState(true)
   const [vacationsList, setVacationsList] =useState<number[]>()
   const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(position)
@@ -19,7 +21,7 @@ export function Vacations() {
   const [getFollowingsByUser] = useGetFollowingsByUserMutation()
   const [addFollowing] = useAddFollowingMutation()
   const [deleteFollowing] = useDeleteFollowingMutation()
-  // const [refreshVacations] = useRefreshVacationsMutation()
+  // const [clickedVacations] = useclickedVacationsMutation()
   const dataLength: number | undefined = data?.length
   if(dataLength == 0 && page > 0){
     setPosition(((+position) - step).toString())
@@ -41,19 +43,27 @@ export function Vacations() {
   }
 
  const addFollowingHandler= async (email:string, vcnId:number) =>{
-  setRefresh(false)
-  await addFollowing({email, vcnId})
-  setRefresh(true)
+ //ne trogat setclick nigde - na nego zakreplena smena divov, slova v knopke i tsveta serdechka
+  setClicked(false)//unclicked//pink heart//follow texted
+  await addFollowing({email, vcnId})//followed
+  setReloaded(false)//ne perezagruzhen vruchnuyu - prinuditelno
+  setLike(true)//liked
+  setClicked(true)//clicked//red heart//unfollow texted
+
  }
 
  const deleteFollowingHandler= async (email:string, vcnId:number) =>{
-  setRefresh(false)
-  await deleteFollowing({email, vcnId})
-  setRefresh(true)
+ //ne trogat setclick nigde - na nego zakreplena smena divov, slova v knopke i tsveta serdechka
+  setClicked(false)//unclicked//red heart//unfollow texted
+  await deleteFollowing({email, vcnId})//unfollowed
+  setReloaded(false)//ne perezagruzhen vruchnuyu - prinuditelno
+  setLike(false)//disliked
+  setClicked(true)//clicked//pink heart//follow texted
+ 
  }
 
-// const refreshVacationsHandler = async(position:string) =>{
-//   await refreshVacations(position)
+// const clickedVacationsHandler = async(position:string) =>{
+//   await clickedVacations(position)
   
 // }
 
@@ -63,7 +73,7 @@ export function Vacations() {
   getFollowingsByUserHandler(email)
  
      // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[refresh])
+  },[clicked])
 
   console.log("vacationsList: ",vacationsList)
 
@@ -107,7 +117,7 @@ export function Vacations() {
                        <div>
                         <div>
                         <span className="like" title="unfollow" >&#10084;</span>
-                        <span className="likes">{vacation.followers}</span>
+                        <span className="likes">{like? vacation.followers+1 :  vacation.followers}</span>
                         </div>
                         <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
                        </div> 
@@ -115,7 +125,7 @@ export function Vacations() {
                        <div>
                         <div>
                         <span className="dislike" title="follow" >&#10084;</span>
-                        <span className="likes">{vacation.followers}</span>
+                        <span className="likes">{reloaded ? vacation.followers-1 :  vacation.followers}</span>
                         </div>
                         <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
                        </div>
