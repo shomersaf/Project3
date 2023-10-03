@@ -4,29 +4,43 @@ import { useAddFollowingMutation, useDeleteFollowingMutation, useGetFollowingsBy
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
 import { useAuth } from "../store/hooks/use-auth";
-
-
+import { IVacation } from "../models/models";
 
 export function Vacations() {
   const [position, setPosition] = useState("0")
   const [page, setPage] = useState(1)
- const [clicked, setClicked] =useState(false)
- const [like, setLike] =useState(false)
-
- const [reloaded, setReloaded] =useState(true)
-  const [vacationsList, setVacationsList] =useState<number[]>()
+  const [clicked, setClicked] = useState(false)
+  const [vacationsList, setVacationsList] = useState<number[]>()
   const step: number = 10;
   const { isLoading, isError, data } = useGetVacationsQuery(position)
-  const {email} = useAuth()
+  const [likeBuffer, setLikeBuffer] = useState({})
+  const [dataBuffer, setDataBuffer] = useState({})
+  if (data && data != dataBuffer){
+    // console.log("DATA UPDATED!@#$%^")
+    setDataBuffer(data)
+    setLikeBuffer({})
+  }
+  // if(!data && Object.keys(likeBuffer).length > 0){
+  //   setLikeBuffer({})
+  // }
+  if (data && Object.keys(likeBuffer).length === 0) {
+    const _likeBuffer = JSON.parse(JSON.stringify(likeBuffer))
+    data?.map((v: IVacation) => {
+      _likeBuffer[v.vcnId] = 0;
+    })
+    setLikeBuffer(_likeBuffer)
+  }
+
+  const { email } = useAuth()
   const [getFollowingsByUser] = useGetFollowingsByUserMutation()
   const [addFollowing] = useAddFollowingMutation()
   const [deleteFollowing] = useDeleteFollowingMutation()
-  // const [clickedVacations] = useclickedVacationsMutation()
   const dataLength: number | undefined = data?.length
-  if(dataLength == 0 && page > 0){
+  if (dataLength == 0 && page > 0) {
     setPosition(((+position) - step).toString())
     setPage(page - 1);
   }
+
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -34,7 +48,7 @@ export function Vacations() {
     // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
- 
+
   const getFollowingsByUserHandler = async (email: string) => {
     const result = await getFollowingsByUser(email)
     const resList = Object(result).data
@@ -42,40 +56,28 @@ export function Vacations() {
     setVacationsList(vax)
   }
 
- const addFollowingHandler= async (email:string, vcnId:number) =>{
- //ne trogat setclick nigde - na nego zakreplena smena divov, slova v knopke i tsveta serdechka
-  setClicked(false)//unclicked//pink heart//follow texted
-  await addFollowing({email, vcnId})//followed
-  setReloaded(false)//ne perezagruzhen vruchnuyu - prinuditelno
-  setLike(true)//liked
-  setClicked(true)//clicked//red heart//unfollow texted
+  const addFollowingHandler = async (email: string, vcnId: number) => {
+    setClicked(false)
+    await addFollowing({ email, vcnId })
+    likeBuffer[vcnId] += 1;
+    setClicked(true)
 
- }
+  }
 
- const deleteFollowingHandler= async (email:string, vcnId:number) =>{
- //ne trogat setclick nigde - na nego zakreplena smena divov, slova v knopke i tsveta serdechka
-  setClicked(false)//unclicked//red heart//unfollow texted
-  await deleteFollowing({email, vcnId})//unfollowed
-  setReloaded(false)//ne perezagruzhen vruchnuyu - prinuditelno
-  setLike(false)//disliked
-  setClicked(true)//clicked//pink heart//follow texted
- 
- }
-
-// const clickedVacationsHandler = async(position:string) =>{
-//   await clickedVacations(position)
-  
-// }
+  const deleteFollowingHandler = async (email: string, vcnId: number) => {
+    setClicked(false)
+    await deleteFollowing({ email, vcnId })
+    likeBuffer[vcnId] += -1;
+    setClicked(true)
+  }
 
 
+  useEffect(() => {
+    getFollowingsByUserHandler(email)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clicked])
 
-  useEffect(()=>{
-  getFollowingsByUserHandler(email)
- 
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[clicked])
-
-  console.log("vacationsList: ",vacationsList)
+  console.log("vacationsList: ", vacationsList)
 
   return (
     <>
@@ -87,14 +89,11 @@ export function Vacations() {
         {isError && <p className="errorP">Something went wrong...</p>}
         {isLoading && <p className="loadingP">Loading...</p> ||
           <div className="wrapper">
-
             <div className="pagination">
               <button onClick={() => { prevPage(position, page, dataLength, step) }}>prev</button>
               <div className="pageNum">{page !== 0 ? page : "all"}</div>
-             
               <button onClick={() => { nextPage(position, page, dataLength, step) }}>next</button>
             </div>
-
             <div className="cards">
               {data?.map(vacation => (
                 <div key={vacation.destination + vacation.fromDate} className="card">
@@ -105,7 +104,6 @@ export function Vacations() {
                       <p className="about">{vacation.about}</p>
                     </div>
                     <div className="downtown">
-                      
                       <div className="date">
                         <span>{new Date(vacation.fromDate).toLocaleDateString()}  - </span>
                         <span>{new Date(vacation.toDate).toLocaleDateString()}</span>
@@ -113,24 +111,23 @@ export function Vacations() {
                       <div className="cardFooter">
                         <div className="price">{formatter.format(vacation.price)}</div>
                         <div className="likeDiv">
-                       {vacationsList && vacationsList.find((v)=>v == Number(vacation.vcnId))? 
-                       <div>
-                        <div>
-                        <span className="like" title="unfollow" >&#10084;</span>
-                        <span className="likes">{!reloaded && like ? vacation.followers+1: vacation.followers }</span>
-                        </div>
-                        <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
-                       </div> 
-                       :
-                       <div>
-                        <div>
-                        <span className="dislike" title="follow" >&#10084;</span>
-                        <span className="likes">{reloaded && like ? vacation.followers-1: vacation.followers }</span>
-                        </div>
-                        <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
-                       </div>
-                       }
-                         
+                          {vacationsList && vacationsList.find((v) => v == Number(vacation.vcnId)) ?
+                            <div>
+                              <div>
+                                <span className="like" title="unfollow" >&#10084;</span>
+                                <span className="likes">{vacation.followers + likeBuffer[Number(vacation.vcnId)]}</span>
+                              </div>
+                              <button onClick={() => { deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
+                            </div>
+                            :
+                            <div>
+                              <div>
+                                <span className="dislike" title="follow" >&#10084;</span>
+                                <span className="likes">{vacation.followers + likeBuffer[Number(vacation.vcnId)]}</span>
+                              </div>
+                              <button onClick={() => { addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
+                            </div>
+                          }
                         </div>
                       </div>
                     </div>
@@ -140,7 +137,6 @@ export function Vacations() {
             </div>
           </div>}
       </div>
-
       <Footer />
     </>
   )
@@ -161,7 +157,6 @@ export function Vacations() {
     if (dataLength && position == "all" || dataLength && Number(position) > 0) {
       if (page == 0) {
         setPosition("all");
-
       } else {
         setPosition(((+position) - step).toString())
         setPage(page - 1);
