@@ -6,8 +6,14 @@ import { Header } from "../ui/header";
 import { useAuth } from "../store/hooks/use-auth";
 import { IVacation } from "../models/models";
 
+
+
 export function Vacations() {
   const [position, setPosition] = useState("0")
+  const [all, setAll] = useState(false)
+  const [favourites, setFavourites] = useState(false)
+  const [current, setCurrent] = useState(false)
+  const [upcoming, setUpcoming] = useState(false)
   const [page, setPage] = useState(1)
   const [clicked, setClicked] = useState(false)
   const [vacationsList, setVacationsList] = useState<number[]>()
@@ -20,9 +26,7 @@ export function Vacations() {
     setDataBuffer(data)
     setLikeBuffer({})
   }
-  // if(!data && Object.keys(likeBuffer).length > 0){
-  //   setLikeBuffer({})
-  // }
+
   if (data && Object.keys(likeBuffer).length === 0) {
     const _likeBuffer = JSON.parse(JSON.stringify(likeBuffer))
     data?.map((v: IVacation) => {
@@ -79,12 +83,46 @@ export function Vacations() {
 
   // console.log("vacationsList: ", vacationsList)
 
+  function allHandler(){
+    setAll(true); 
+    setFavourites(false);
+    setCurrent(false)
+    setUpcoming(false)
+  }
+
+  function favouritesHandler(){
+    setFavourites(true); 
+    setAll(false)
+    setCurrent(false)
+    setUpcoming(false)
+}
+    function currentHandler(){
+      setCurrent(true)
+      setAll(false); 
+      setFavourites(false);
+      setUpcoming(false)
+     }
+    
+
+     function upcomingHandler(){
+      setUpcoming(true)
+      setCurrent(false)
+      setAll(false); 
+      setFavourites(false);
+     }
+    
+
   return (
     <>
       <Header />
+  <form className="filterForm" action="#">
+  <div><input type="checkbox" name="all" value="all" onChange={allHandler} checked={all}/> All</div>
+  <div><input type="checkbox" name="favourites" value="favourites"  onChange={favouritesHandler} checked={favourites} /> Favourites</div>
+  <div><input type="checkbox" name="current" value="current" onChange={currentHandler} checked={current} /> Current</div>
+  <div><input type="checkbox" name="upcoming" value="upcoming" onChange={upcomingHandler} checked={upcoming} /> Upcoming</div>
+  </form>
       <div className="wrapper">
 
-        <h2 className="headline">Vacations</h2>
 
         {isError && <p className="errorP">Something went wrong...</p>}
         {isLoading && <p className="loadingP">Loading...</p> ||

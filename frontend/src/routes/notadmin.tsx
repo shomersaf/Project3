@@ -34,7 +34,7 @@ export const notadminroutes: Array<IRoute> = [
     path: "/vacations",
     component: <UserRoute><Vacations /></UserRoute>,
     key: "Vacations",
-    label: "Vacations",
+    //label: "Vacations",
  
   },
   
