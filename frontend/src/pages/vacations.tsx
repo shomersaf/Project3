@@ -18,7 +18,13 @@ export function Vacations() {
   const [clicked, setClicked] = useState(false)
   const [vacationsList, setVacationsList] = useState<number[]>()
   const step: number = 10;
-  const { isLoading, isError, data } = useGetVacationsQuery(position)
+  let filterMode = "";
+  if (all) filterMode = "all"
+  if (favourites) filterMode = "favourites"
+  if (current) filterMode = "current"
+  if (upcoming) filterMode = "upcoming"
+  const { email } = useAuth()
+  const { isLoading, isError, data } = useGetVacationsQuery({stepFrom: position, filterName: filterMode, filterBy: email})
   const [likeBuffer, setLikeBuffer] = useState({})
   const [dataBuffer, setDataBuffer] = useState({})
   if (data && data != dataBuffer){
@@ -35,7 +41,7 @@ export function Vacations() {
     setLikeBuffer(_likeBuffer)
   }
 
-  const { email } = useAuth()
+  
   const [getFollowingsByUser] = useGetFollowingsByUserMutation()
   const [addFollowing] = useAddFollowingMutation()
   const [deleteFollowing] = useDeleteFollowingMutation()

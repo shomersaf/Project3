@@ -5,6 +5,9 @@ import {getVacationsHandler } from "./handlers/getVacationsHandler";
 import {putVacationHandler } from "./handlers/putVacationHandler";
 import {deleteVacationHandler } from "./handlers/deleteVacationHandler";
 import {postVacationHandler } from "./handlers/postVacationHandler";
+import { getFavouriteVacationsHandler } from "./handlers/getFavouriteVacationsHandler";
+import { getCurrentVacationsHandler } from "./handlers/getCurrentVacationsHandler";
+import { getUpcomingVacationsHandler } from "./handlers/getUpcomingVacationsHandler ";
 
 const vacationsRouter = express.Router();
 
@@ -70,11 +73,12 @@ async function postVacation(req: Request, res: Response, next: NextFunction) {
 
 
 async function getVacations(req: Request, res: Response, next: NextFunction) {
+  
   try {
-   const {_stepFrom } = req.query;
+   const {_stepFrom,_filterName, _filterBy } = req.query;
    const step = ",10"
+
    var limitPossible:any;
-   console.log("limit: ",_stepFrom);
    if (_stepFrom?.toString().startsWith("all") == true){
     limitPossible =''
    }else{
@@ -83,9 +87,23 @@ async function getVacations(req: Request, res: Response, next: NextFunction) {
 
 
   console.log("limitPossible: ", limitPossible)
-    const result = await getVacationsHandler(limitPossible);
-   
-    res.status(200).json(result);
+  let result:any;
+  
+  if (_filterName =="all"){
+    console.log("_filterBy:all ");
+    result = await getVacationsHandler(limitPossible);
+  }else if (_filterName =="favourites"){
+    console.log("_filterBy:favourites ");
+    result = await getFavouriteVacationsHandler(limitPossible, _filterBy);
+  }else if (_filterName =="current"){
+    console.log("_filterBy:current ");
+    result = await getCurrentVacationsHandler(limitPossible);
+  }else if (_filterName =="upcoming"){
+    console.log("_filterBy:upcoming ");
+    result = await getUpcomingVacationsHandler(limitPossible);
+  }
+
+  res.status(200).json(result);
   } catch (error) {
     return next(error);
   }

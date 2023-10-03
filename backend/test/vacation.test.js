@@ -212,8 +212,8 @@ it("PUT vacation - Wrong image source - irrelevant beginning", async function ()
 });
 
 describe("GET /VACATIONS", function () {
-  it("Get Vacations - followers per vacations ", async function () {
-      const result = await axios.get(`http://localhost:4001/vacations?_stepFrom=all`)
+  it("Get Vacations - followers per vacations - ALL ", async function () {
+      const result = await axios.get(`http://localhost:4001/vacations?_stepFrom=0&_filterName=all&_filterBy=`)
     const { data } = result;
     //console.log(data)
       expect(result.status).equal(200)
@@ -223,14 +223,44 @@ describe("GET /VACATIONS", function () {
   })
 });
 
-// describe("GET /vacations/byid/:vcnId", function(){
-//   it("Get vacation by vcnId - Success ", async function () {
-//     // console.log("vacation by id: ",insertId)
-//     vcnId = insertId.toString();
-//     const result = await axios.delete(`http://localhost:4001/vacations/delete/${vcnId}`)
-//     expect(result.status).equal(200)
-// })
-// });
+
+describe("GET /VACATIONS", function () {
+  it("Get Vacations - followers per vacations - FAVOURITES ", async function () {
+      const result = await axios.get(`http://localhost:4001/vacations?_stepFrom=0&_filterName=favourites&_filterBy=one@co.il`)
+    const { data } = result;
+    //console.log(data)
+      expect(result.status).equal(200)
+      expect(typeof result.data).equal("object")
+       const isFillowingArray = Array.isArray(result.data);
+       expect(isFillowingArray).equal(true)
+  })
+});
+
+describe("GET /VACATIONS", function () {
+  it("Get Vacations - followers per vacations - CURRENT ", async function () {
+      const result = await axios.get(`http://localhost:4001/vacations?_stepFrom=0&_filterName=current&_filterBy=`)
+    const { data } = result;
+    //console.log(data)
+      expect(result.status).equal(200)
+      expect(typeof result.data).equal("object")
+       const isFillowingArray = Array.isArray(result.data);
+       expect(isFillowingArray).equal(true)
+  })
+});
+
+
+describe("GET /VACATIONS", function () {
+  it("Get Vacations - followers per vacations - UPCOMING ", async function () {
+      const result = await axios.get(`http://localhost:4001/vacations?_stepFrom=0&_filterName=upcoming&_filterBy=`)
+    const { data } = result;
+    //console.log(data)
+      expect(result.status).equal(200)
+      expect(typeof result.data).equal("object")
+       const isFillowingArray = Array.isArray(result.data);
+       expect(isFillowingArray).equal(true)
+  })
+});
+
 
 describe("DELETE /vacations/delete/:vcnId", function(){
   it("Delete vacation - Success ", async function () {

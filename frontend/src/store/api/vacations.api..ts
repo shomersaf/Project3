@@ -12,9 +12,13 @@ export const vacationsApi = createApi({
   endpoints: (build) => ({
 
 
-    getVacations: build.query<IVacation[], string>({
-      query: (stepFrom = "all") =>
-        `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,
+    getVacations: build.query<IVacation[], {stepFrom:string,filterName:string,filterBy:string}>({
+      query: (args) => {
+        const {stepFrom,filterName, filterBy} = args;
+        return {
+          url: `vacations?${stepFrom && `_stepFrom=${stepFrom}`}&${filterName && `_filterName=${filterName}`}&${filterBy && `_filterBy=${filterBy}`}`,
+        }
+      },
       providesTags: ["IVacation[]"],
     }),
 
