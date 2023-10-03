@@ -117,7 +117,7 @@ export function Vacations() {
                        <div>
                         <div>
                         <span className="like" title="unfollow" >&#10084;</span>
-                        <span className="likes">{like? vacation.followers+1 :  vacation.followers}</span>
+                        <span className="likes">{!reloaded && like ? vacation.followers+1: vacation.followers }</span>
                         </div>
                         <button onClick={()=>{deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
                        </div> 
@@ -125,7 +125,7 @@ export function Vacations() {
                        <div>
                         <div>
                         <span className="dislike" title="follow" >&#10084;</span>
-                        <span className="likes">{reloaded ? vacation.followers-1 :  vacation.followers}</span>
+                        <span className="likes">{reloaded && like ? vacation.followers-1: vacation.followers }</span>
                         </div>
                         <button onClick={()=>{addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
                        </div>
