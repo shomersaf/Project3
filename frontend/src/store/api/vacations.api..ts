@@ -10,6 +10,8 @@ export const vacationsApi = createApi({
   refetchOnFocus: true,
   refetchOnMountOrArgChange: true,
   endpoints: (build) => ({
+
+
     getVacations: build.query<IVacation[], string>({
       query: (stepFrom = "all") =>
         `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,
