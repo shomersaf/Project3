@@ -77,7 +77,7 @@ export function Vacations() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clicked])
 
-  console.log("vacationsList: ", vacationsList)
+  // console.log("vacationsList: ", vacationsList)
 
   return (
     <>
