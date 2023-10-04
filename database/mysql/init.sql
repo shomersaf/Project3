@@ -403,8 +403,8 @@ The Vietnamese name for Mekong Delta is Cuu Long, meaning nine dragons, for the 
 in the sea.
 In Vietnam, the Mekong Delta covers a region of 39,000 sq km (15,000 sq mi) and lies west of Ho Chi Minh City, forming a triangle stretching 
 from My Tho in the east, Chau Doc in the northwest, and Ca Mau in the south, including the South China Sea and the island of Phu Quoc ', 
- '2024-01-11', 
- '2024-01-20', 
+ '2023-10-05', 
+ '2023-10-20', 
  '7910', 
  'https://dubabah.club/uploads/posts/2023-05/1684236199_dubabah-club-p-rasteniya-yugo-vostochnoi-azii-krasivo-52.jpg');
 
@@ -433,8 +433,8 @@ you would experience only in Kyrgyzstan. Five beautiful and intense days around 
  both sides: from modern resorts on the north coast, to wild and pristine nature on the south. You will be trying the national cuisine, 
  riding a horse up to waterfalls, sailing the endless lake on a ship, sleeping in a yurt, seeing wild animals, visiting museums with parks, 
  roaming canyons with gorges and so much more! Spend your unforgettable vacation this stunning way embarking on the tour that is a pure treasure!', 
- '2024-07-11', 
- '2024-07-25', 
+ '2023-10-04', 
+ '2023-10-15', 
  '5920', 
  'https://gulaytour.ru/wp-content/uploads/2017/10/issyk-kul_4_3_2-thumb-1024xauto-1106731-1024x768.jpg');
 
