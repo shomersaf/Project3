@@ -95,8 +95,8 @@ VALUES ('Ulaanbaatar, Mongolia',
  to the Blue pearl lake Khuvsgul, from the wild horses home of Hustai National Park to the golden sand dunes of Gobi desert,
   everywhere and anywhere in the country, people can surrounded by the beautiful nature and lively culture. Some, of course, still 
   stay in the city and enjoy city life under the sun and shining stars. ', 
- '2024-10-02', 
- '2024-10-08', 
+ '2023-10-02', 
+ '2023-10-28', 
  '2320', 
  'https://cdn.profile.ru/wp-content/uploads/2022/01/Mongoliya-fon-stepi-ljudi.jpg');
 

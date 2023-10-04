@@ -10,7 +10,7 @@ import { IVacation } from "../models/models";
 
 export function Vacations() {
   const [position, setPosition] = useState("0")
-  const [all, setAll] = useState(false)
+  const [all, setAll] = useState(true)
   const [favourites, setFavourites] = useState(false)
   const [current, setCurrent] = useState(false)
   const [upcoming, setUpcoming] = useState(false)
@@ -18,16 +18,19 @@ export function Vacations() {
   const [clicked, setClicked] = useState(false)
   const [vacationsList, setVacationsList] = useState<number[]>()
   const step: number = 10;
+  
   let filterMode = "";
   if (all) filterMode = "all"
   if (favourites) filterMode = "favourites"
   if (current) filterMode = "current"
   if (upcoming) filterMode = "upcoming"
   const { email } = useAuth()
+ if(Number(position) <0){setPosition("0");}
   const { isLoading, isError, data } = useGetVacationsQuery({stepFrom: position, filterName: filterMode, filterBy: email})
   const [likeBuffer, setLikeBuffer] = useState({})
   const [dataBuffer, setDataBuffer] = useState({})
-  if (data && data != dataBuffer){
+
+  if (data && data.length && data != dataBuffer){
     // console.log("DATA UPDATED!@#$%^")
     setDataBuffer(data)
     setLikeBuffer({})
@@ -127,21 +130,23 @@ export function Vacations() {
   <div><input type="checkbox" name="current" value="current" onChange={currentHandler} checked={current} /> Current</div>
   <div><input type="checkbox" name="upcoming" value="upcoming" onChange={upcomingHandler} checked={upcoming} /> Upcoming</div>
   </form>
+  
       <div className="wrapper">
 
-
+        
         {isError && <p className="errorP">Something went wrong...</p>}
-        {isLoading && <p className="loadingP">Loading...</p> ||
+        {isLoading && <p className="loadingP">Loading...</p> || 
           <div className="wrapper">
             <div className="pagination">
               <button onClick={() => { prevPage(position, page, dataLength, step) }}>prev</button>
-              <div className="pageNum">{page !== 0 ? page : "all"}</div>
+              <div className="pageNum">{page !== 0 ? page : "1"}</div>
               <button onClick={() => { nextPage(position, page, dataLength, step) }}>next</button>
             </div>
+            {!data?.length && <h2>Nothing Found</h2>}
             <div className="cards">
-              {data?.map(vacation => (
+              { data?.map(vacation => (
                 <div key={vacation.destination + vacation.fromDate} className="card">
-                  <img src={vacation.imageSrc} alt={vacation.destination} />
+                 { <img src={vacation.imageSrc} alt={"NO IMG SRC"} /> }
                   <div className="description">
                     <div className="top">
                       <h3>{vacation.destination}</h3>
@@ -177,7 +182,7 @@ export function Vacations() {
                     </div>
                   </div>
                 </div>
-              ))}
+              )) }
             </div>
           </div>}
       </div>

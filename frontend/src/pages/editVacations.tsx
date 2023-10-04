@@ -34,7 +34,7 @@ export function EditVacations (){
    
        {data?.map(vacation => (
            <div key={vacation.destination+vacation.fromDate} className="card">
-               <img src={vacation.imageSrc} alt ={vacation.destination} />
+               <img src={vacation.imageSrc} alt ={"NO IMG SRC"} />
                <div className="description">
                <div className="top">
                <h3>{vacation.destination}</h3>
