@@ -15,7 +15,6 @@ export const vacationsApi = createApi({
     getVacations: build.query<IVacation[], {stepFrom:string,filterName:string,filterBy:string}>({
       query: (args) => {
         const {stepFrom,filterName, filterBy} = args;
-  
         return {
           url: `vacations?${stepFrom && `_stepFrom=${stepFrom}`}&${filterName && `_filterName=${filterName}`}&${filterBy && `_filterBy=${filterBy}`}`,
         }
