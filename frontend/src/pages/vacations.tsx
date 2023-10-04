@@ -164,7 +164,7 @@ export function Vacations() {
                             <div>
                               <div>
                                 <span className="like" title="unfollow" >&#10084;</span>
-                                <span className="likes">{vacation.followers + likeBuffer[Number(vacation.vcnId)]}</span>
+                                <span className="likes">{isNaN(vacation.followers + likeBuffer[Number(vacation.vcnId)]) ? 0 :vacation.followers + likeBuffer[Number(vacation.vcnId)]}</span>
                               </div>
                               <button onClick={() => { deleteFollowingHandler(email, +vacation.vcnId); }}>unfollow</button>
                             </div>
@@ -172,7 +172,7 @@ export function Vacations() {
                             <div>
                               <div>
                                 <span className="dislike" title="follow" >&#10084;</span>
-                                <span className="likes">{vacation.followers + likeBuffer[Number(vacation.vcnId)]}</span>
+                                <span className="likes">{isNaN(vacation.followers + likeBuffer[Number(vacation.vcnId)]) ? 0 :vacation.followers + likeBuffer[Number(vacation.vcnId)]}</span>
                               </div>
                               <button onClick={() => { addFollowingHandler(email, +vacation.vcnId); }}>follow</button>
                             </div>
