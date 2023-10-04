@@ -7,7 +7,7 @@ console.log("limit on sql:", limit)
     const query = `select *
     from project3.vacations
     where toDate > now()
-    and fromDate < now() ${limit};`
+    and fromDate <= now() ${limit};`
  
     const results = await pool.execute(query);
     const [data] = results;
