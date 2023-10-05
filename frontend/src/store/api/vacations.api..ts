@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IVacation, IFollow, IUser, ILogin, IError } from "../../models/models";
+import { getTokenFromLocalStorage } from "../../utilities/getTokenFromLocalStorage";
+
 
 export const vacationsApi = createApi({
   reducerPath: "vacationsApi",
@@ -17,33 +19,58 @@ export const vacationsApi = createApi({
         const {stepFrom,filterName, filterBy} = args;
         return {
           url: `vacations?${stepFrom && `_stepFrom=${stepFrom}`}&${filterName && `_filterName=${filterName}`}&${filterBy && `_filterBy=${filterBy}`}`,
+          headers: {
+          Authorization: `Bearer ${getTokenFromLocalStorage}`,
+        },
+          providesTags: ["IVacation[]"],
         }
       },
       providesTags: ["IVacation[]"],
     }),
 
-
     refreshVacations: build.mutation<IVacation[], string>({
-      query: (stepFrom = "all") =>
-        `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,
+      query: (stepFrom = "all") => ({
+        url: `vacations?${stepFrom && `_stepFrom=${stepFrom}`}`,
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+        },})
   
     }),
-
+    
     getFollowingsByUser: build.mutation<IFollow[], string>({
-      query: (email) =>
-        `following/by_user/${email}`,
+      query: (email) => ({
+        url: `following/by_user/${email}`,
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+        },})
   
     }),
 
     getFollowingsByVacation: build.query<IFollow[], string>({
-      query: (vcnId) =>
-        `following:${vcnId}`,
-      providesTags: ["IFollow[]"],
+      query: (vcnId) => ({
+        url: `following:${vcnId}`,
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+        },}),
+        providesTags: ["IFollow[]"],
     }),
 
+
     editVacations: build.query<IVacation[], string>({
-      query: () => `vacations?${`_stepFrom=all`}&${`_filterName=all`}`,
-      providesTags: ["IVacation[]"],
+      query: () => ({
+        url: `vacations?${`_stepFrom=all`}&${`_filterName=all`}`,
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+        },}),
+        providesTags: ["IVacation[]"],
     }),
 
     registerUser: build.mutation<IUser, object>({
@@ -53,6 +80,7 @@ export const vacationsApi = createApi({
         body,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
+         // Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
         transformResponse: (response: { data: unknown; status: unknown }) =>
           response.data,
@@ -66,6 +94,7 @@ export const vacationsApi = createApi({
         body: payload,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
+         // Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
 
         transformResponse: (response: { data: unknown; error: IError }) =>
@@ -80,6 +109,7 @@ export const vacationsApi = createApi({
         body: payload,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
         transformResponse: (response: { data: unknown; status: unknown }) =>
           response.data,
@@ -95,6 +125,7 @@ export const vacationsApi = createApi({
         body: payload,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
         transformResponse: (response: { data: unknown; status: unknown }) =>
           response.data,
@@ -110,6 +141,7 @@ export const vacationsApi = createApi({
         body: payload,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
         transformResponse: (response: { data: unknown; status: unknown }) =>
           response.data,
@@ -122,6 +154,10 @@ export const vacationsApi = createApi({
       query: (vcnId) => ({
         url: `vacations/delete/${vcnId}`,
         method: "DELETE",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+        },
       }),
       invalidatesTags: ["IVacation[]"],
     }),
@@ -134,6 +170,7 @@ export const vacationsApi = createApi({
       body: payload,
       headers: {
         "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${getTokenFromLocalStorage()}`,
       },
     }),
     // invalidatesTags: ["IFollow[]"],
