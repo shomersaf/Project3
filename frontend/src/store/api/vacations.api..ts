@@ -20,7 +20,8 @@ export const vacationsApi = createApi({
         return {
           url: `vacations?${stepFrom && `_stepFrom=${stepFrom}`}&${filterName && `_filterName=${filterName}`}&${filterBy && `_filterBy=${filterBy}`}`,
           headers: {
-          Authorization: `Bearer ${getTokenFromLocalStorage}`,
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
           providesTags: ["IVacation[]"],
         }
@@ -80,7 +81,7 @@ export const vacationsApi = createApi({
         body,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
-         // Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
         transformResponse: (response: { data: unknown; status: unknown }) =>
           response.data,
@@ -94,7 +95,7 @@ export const vacationsApi = createApi({
         body: payload,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
-         // Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
 
         transformResponse: (response: { data: unknown; error: IError }) =>

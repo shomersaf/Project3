@@ -25,7 +25,6 @@ app.use("/following", followingRouter)
 
 
 function verifyToken(req: Request, res: Response, next: () => any){
-    //const { authorization: token } = req.body.headers
     const result =  req?.headers?.authorization
     let token:any;
     if(result){
