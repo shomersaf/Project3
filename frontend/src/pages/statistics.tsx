@@ -1,5 +1,5 @@
   
-import { useEditVacationsQuery } from "../store/api/vacations.api."
+import { useEditVacationsQuery } from "../store/api/vacations.api"
 import { Chart } from 'primereact/chart';
 
 import CsvDownloadButton from 'react-json-to-csv';

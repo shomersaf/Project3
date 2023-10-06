@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAddVacationMutation } from '../store/api/vacations.api.';
+import { useAddVacationMutation } from '../store/api/vacations.api';
 
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Header } from '../ui/header';

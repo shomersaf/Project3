@@ -1,5 +1,5 @@
 import { configureStore} from "@reduxjs/toolkit";
-import { vacationsApi } from "./api/vacations.api.";
+import { vacationsApi } from "./api/vacations.api";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import userReducer from "./slices/userSlice";
 

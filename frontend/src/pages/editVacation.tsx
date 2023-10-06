@@ -1,4 +1,4 @@
-import { useEditVacationsQuery, usePutVacationMutation } from "../store/api/vacations.api.";
+import { useEditVacationsQuery, usePutVacationMutation } from "../store/api/vacations.api";
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useState} from 'react';
 import { Header } from "../ui/header";

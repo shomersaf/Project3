@@ -12,6 +12,8 @@ services:
       MYSQL_ROOT_PASSWORD: admin
     volumes:
       - "./database/mysql:/docker-entrypoint-initdb.d"  
+    networks:
+      - app-net
     
   backend:
     image: backend

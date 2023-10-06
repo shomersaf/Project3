@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { useRegisterUserMutation} from '../store/api/vacations.api.';
+import { useRegisterUserMutation} from '../store/api/vacations.api';
 import {  useNavigate,Link, Navigate } from 'react-router-dom';
 
 export function Registration (){

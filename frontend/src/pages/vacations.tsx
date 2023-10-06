@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useAddFollowingMutation, useDeleteFollowingMutation, useGetFollowingsByUserMutation, useGetVacationsQuery } from "../store/api/vacations.api."
+import { useAddFollowingMutation, useDeleteFollowingMutation, useGetFollowingsByUserMutation, useGetVacationsQuery } from "../store/api/vacations.api"
 import { Footer } from "../ui/footer";
 import { Header } from "../ui/header";
 import { useAuth } from "../store/hooks/use-auth";

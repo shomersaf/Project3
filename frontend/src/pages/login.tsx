@@ -1,4 +1,4 @@
-import { useLoginUserMutation } from "../store/api/vacations.api."
+import { useLoginUserMutation } from "../store/api/vacations.api"
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
