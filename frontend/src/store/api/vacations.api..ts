@@ -7,7 +7,7 @@ export const vacationsApi = createApi({
   reducerPath: "vacationsApi",
   tagTypes: ["IVacation[]", "IFollow[]"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4001/",
+    baseUrl: "http://"+window.location.hostname+":4001/",
   }),
   refetchOnFocus: true,
   refetchOnMountOrArgChange: true,
