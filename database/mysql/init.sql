@@ -486,7 +486,7 @@ INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userR
 INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('Alex', 'Jones', 'four@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
 INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('Alexandra', 'Petrucci', 'five@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
 INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('James', 'McArthur', 'six@co.il', '$2a$05$CftQ/TO/McwZMqXp227m0enQ/.qGJZi9/8q8vzX.gyS/zUKLYNQ7i', 'user');
-INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('admin', 'admin', 'admin@co.il', '$2a$05$zuQbCdGePSo9q/ID3xVu9uV0goz.HgiLGew4/O8lRiPgkGrLw3K1G', 'admin');
+INSERT INTO `project3`.`users` (`firstName`, `lastName`, `email`, `pswrd`,`userRole`) VALUES ('admin', 'admin', 'admin@co.il', '$2a$05$KYstYTnCJ8PB91Tl9XhF9ezoT.nRu11gwlhv5V8WVIHMmalbJsYzO', 'admin');
 
 
 
